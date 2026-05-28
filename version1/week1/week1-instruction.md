@@ -86,29 +86,100 @@ Run these commands and record the inputs/outputs in your report:
 ## 📅 Session 3: Advanced File Management, Search, and Links (Sunday Morning — 4 Hours)
 
 ### 1. OS Concepts
-*   **Inodes:** Inside a Linux filesystem, file contents are identified by a unique metadata number called an **Inode**. The file name is simply a label pointing to an Inode.
-*   **Links:** 
-    *   **Hard Link:** A new directory entry pointing directly to the *same Inode*. If you delete the original file, the hard link still retains the data. Hard links cannot link directories or cross filesystems.
-    *   **Soft (Symbolic) Link:** A special pointer file containing the *path name* of the original file (like a Windows shortcut). If the original file is deleted, the soft link breaks ("dangling link").
-*   **Wildcards (Globbing):** The shell expands special characters before running a command:
-    *   `*`: Matches zero or more characters.
-    *   `?`: Matches exactly one character.
-    *   `[]`: Matches any character inside the brackets.
-*   **Search Utilities:**
-    *   `find`: Searches filesystems in real-time based on criteria (name, size, type).
-    *   `locate`: Searches a local pre-indexed database (extremely fast, updated via `updatedb`).
-    *   `which`: Identifies the execution path of a CLI command.
 
-### 2. Command Reference
+*   **OS Concept 1: Inodes, Names, and Directory Entries**
+    In Linux, a file is not identified by its name. Instead, the OS assigns a unique number called an **Inode** (index node) to every file.
+    - The **Inode** contains metadata (file size, permissions, owner, type, pointers to data blocks).
+    - The **File Name** is simply a label stored in a directory entry pointing to that Inode.
+    - Multiple names can point to the same Inode. This is known as **Linking**.
+
+*   **OS Concept 2: Hard Links vs. Soft (Symbolic) Links**
+    You can create connections between files using links:
+    - **Hard Link (`ln`):** Creates a new directory entry pointing to the **exact same Inode** as the source file. If you delete the original file, the hard link still works and contains the data. It cannot span across different filesystems or link directories.
+    - **Symbolic/Soft Link (`ln -s`):** Creates a small special file containing the **path** to the original file (like a Windows shortcut). If you delete the original file, the soft link breaks ("dangling link"). It can span filesystems and link directories.
+
+*   **OS Concept 3: Shell Wildcards (Globbing)**
+    When working with large numbers of files, typing individual filenames is inefficient. The shell interprets wildcards before executing a command:
+    - **`*` (Asterisk):** Matches zero or more characters. E.g., `*.txt` matches all text files.
+    - **`?` (Question Mark):** Matches exactly one character. E.g., `file?.txt` matches `file1.txt` but not `file12.txt`.
+    - **`[]` (Square Brackets):** Matches any character inside the brackets. E.g., `file[A-C].txt` matches `fileA.txt`, `fileB.txt`, `fileC.txt`.
+
+*   **OS Concept 4: File Searching Utilities**
+    Administrators need to search for configurations, binaries, or logs across filesystems. Linux provides three main tools:
+    - **`which`:** Scans directories listed in your user's shell environmental variable `$PATH` to identify which executable binary is run when you type a command.
+    - **`locate`:** Scans a pre-indexed system database file (`/var/lib/mlocate/mlocate.db`) containing filenames. It is extremely fast, but requires the database to be updated using `sudo updatedb` to find newly created files.
+    - **`find`:** Scans the live filesystem directory tree recursively in real-time. It is slower than `locate` but highly powerful, allowing filters based on name, size, modification time, owner, or permissions.
+
+---
+
+### 2. Part 3 — Links and Searching Files
+
+#### A. Introducing Commands
 
 | Command | Option/Args | Description | Example |
 | :--- | :--- | :--- | :--- |
 | `ln` | None | Create a hard link pointing to target inode | `ln db.conf db_hard.conf` |
 | | `-s` | Create a symbolic (soft) link | `ln -s db.conf db_soft.lnk` |
+| `which` | `[command]` | Search environmental `$PATH` for executable bin path | `which tar` |
+| `locate` | `[query]` | Search pre-indexed filename database (fast) | `locate system.conf` |
 | `find` | `[path] -name` | Search files by name recursively | `find /etc -name "*.conf"` |
-| | `[path] -size` | Search files by size criteria | `find . -size +10M` |
-| `locate`| `[query]` | Search system files database | `locate network.conf` |
-| `which` | `[command]` | Identify shell executable binary location | `which tar` |
+| | `[path] -size` | Search files by size criteria (+ larger, - smaller) | `find . -size +10M` |
+| | `[path] -type` | Search files by type (`f` for files, `d` for directories) | `find /var/log -type f` |
+
+#### B. Hands-on Examples
+
+**1. Inspecting Inodes & Link Behavior:**
+```bash
+# Create a test file
+echo "Database configuration string" > db.conf
+
+# Create a hard link and a soft link
+ln db.conf db_hard.conf
+ln -s db.conf db_soft.conf
+
+# List file inodes (notice db.conf and db_hard.conf share the same inode number)
+ls -i db.conf db_hard.conf db_soft.conf
+# Output:
+# 1234567 db.conf
+# 1234567 db_hard.conf
+# 7654321 db_soft.conf
+```
+
+**2. Locating Command Paths with `which`:**
+```bash
+which ls
+# Output: /usr/bin/ls
+which man
+# Output: /usr/bin/man
+```
+
+**3. Database Search with `locate`:**
+```bash
+# Create a new configuration file
+touch local_test.conf
+
+# Try to find it (will return nothing because the db is not updated)
+locate local_test.conf
+
+# Update database (requires administrator privileges)
+sudo updatedb
+
+# Run locate again (now it finds it instantly)
+locate local_test.conf
+# Output: /home/student/sandbox/local_test.conf
+```
+
+**4. Real-time Traversal with `find`:**
+```bash
+# Find all files ending in .txt in current directory and subdirectories
+find . -name "*.txt"
+
+# Find all files larger than 5MB inside /var/log
+find /var/log -type f -size +5M
+
+# Find all empty directories in the current folder
+find . -type d -empty
+```
 
 ### 3. Session 3 Exercises (To Do)
 Run these commands and record the inputs/outputs in your report:

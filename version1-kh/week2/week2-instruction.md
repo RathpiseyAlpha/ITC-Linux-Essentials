@@ -74,27 +74,142 @@
     > `uniq` only detects duplicate lines if they are **adjacent** (next to each other). You MUST sort the lines using `sort` before calling `uniq` to reliably clean duplicate records.
     > `uniq` រកឃើញតែបន្ទាត់ស្ទួនណាដែល **នៅកៀកគ្នា** ប៉ុណ្ណោះ។ អ្នកត្រូវតែតម្រៀបឯកសារដោយប្រើ `sort` មុនពេលហៅ `uniq` ទើបអាចសម្អាតទិន្នន័យស្ទួនបានល្អ។
 
+---
+
+## 📅 Session 6: Software Package Management & Archiving (Sunday Morning — 4 Hours) / ផ្នែកទី៦៖ ការគ្រប់គ្រងកញ្ចប់កម្មវិធី និងការចងក្រងឯកសារ (ថ្ងៃអាទិត្យ ព្រឹក — ៤ ម៉ោង)
+
+### 1. OS Concepts / គោលគំនិតប្រព័ន្ធប្រតិបត្តិការ
+
+*   **Package Management Ecosystems / ប្រព័ន្ធគ្រប់គ្រងកញ្ចប់កម្មវិធី:**
+    Linux distributions distribute pre-built software compiled for specific CPU architectures using **Package Managers** that pull from central software **Repositories**.
+    ការចែកចាយលីនុច (Linux distributions) ចែកចាយកម្មវិធីដែលបានបង្កើតរួច (pre-built software) ចងក្រងសម្រាប់ស្ថាបត្យកម្ម CPU ជាក់លាក់ ដោយប្រើប្រាស់ **កម្មវិធីគ្រប់គ្រងកញ្ចប់កម្មវិធី (Package Managers)** ដែលទាញយកពី **ឃ្លាំងស្តុកកម្មវិធីកណ្តាល (Repositories)**។
+    *   **Debian/Ubuntu Family / ក្រុមគ្រសួារ Debian/Ubuntu:** Uses `.deb` package binaries. Low-level installer is `dpkg`, while the high-level frontend is APT (`apt`/`apt-get`), which automatically resolves and installs dependencies.
+        ប្រើប្រាស់ឯកសារកញ្ចប់កម្មវិធី binary `.deb`។ កម្មវិធីដំឡើងកម្រិតទាបគឺ `dpkg` ខណៈពេលដែលកម្មវិធីគ្រប់គ្រងកម្រិតខ្ពស់គឺ APT (`apt`/`apt-get`) ដែលដោះស្រាយ និងដំឡើងភាពអាស្រ័យ (dependencies) ដោយស្វ័យប្រវត្តិ។
+    *   **RedHat/Fedora/CentOS Family / ក្រុមគ្រួសារ RedHat/Fedora/CentOS:** Uses `.rpm` package binaries. High-level frontends include YUM (`yum`) or the newer DNF (`dnf`).
+        ប្រើប្រាស់ឯកសារកញ្ចប់កម្មវិធី binary `.rpm`។ កម្មវិធីគ្រប់គ្រងកម្រិតខ្ពស់រួមមាន YUM (`yum`) ឬជំនាន់ថ្មី DNF (`dnf`)។
+    *   **SUSE Family / ក្រុមគ្រួសារ SUSE:** Uses `.rpm` packages managed by the high-level tool Zypper (`zypper`).
+        ប្រើប្រាស់កញ្ចប់កម្មវិធី `.rpm` គ្រប់គ្រងដោយកម្មវិធីកម្រិតខ្ពស់ Zypper (`zypper`)។
+*   **Universal Packaging Formats / ទម្រង់កញ្ចប់កម្មវិធីសកល:**
+    To solve the "dependency hell" and let developers distribute one package for all Linux distros, universal formats run in containerized sandboxes:
+    ដើម្បីដោះស្រាយបញ្ហា "ជម្លោះភាពអាស្រ័យ (dependency hell)" និងអនុញ្ញាតឱ្យអ្នកអភិវឌ្ឍន៍ចែកចាយកញ្ចប់កម្មវិធីតែមួយសម្រាប់គ្រប់ Linux distributions ទម្រង់កញ្ចប់សកលរត់ក្នុងប្រអប់ខ្សាច់កុងតឺន័រ (containerized sandboxes)៖
+    *   **Snap:** Designed by Canonical. Snaps package an application and all its required libraries in a read-only compressed file system, running inside an AppArmor sandbox.
+        រចនាឡើងដោយក្រុមហ៊ុន Canonical។ Snaps ចងក្រងកម្មវិធី និងបណ្ណាល័យ (libraries) ចាំបាច់ទាំងអស់របស់វាទៅជាប្រព័ន្ធឯកសារបង្រួមអានបានតែមួយគត់ (read-only) ដោយដំណើរការក្នុងប្រអប់ខ្សាច់ AppArmor។
+    *   **Flatpak:** A community-driven sandbox packaging tool primarily focused on desktop applications, using Bubbleswrap for isolation.
+        ឧបករណ៍ចងក្រងកញ្ចប់ប្រអប់ខ្សាច់ដែលដឹកនាំដោយសហគមន៍ ដោយផ្ដោតសំខាន់លើកម្មវិធីលើផ្ទៃតុ (desktop applications) ដោយប្រើ Bubbleswrap សម្រាប់ភាពឯកោ (isolation)។
+*   **Source Compilation (`gcc` & `make`) / ការចងក្រងកូដប្រភព:**
+    Before package managers, all software had to be compiled from source. Compilation is the process of translating human-readable source code (e.g. written in C) into binary machine code.
+    មុនពេលមានកម្មវិធីគ្រប់គ្រងកញ្ចប់ កម្មវិធីទាំងអស់ត្រូវតែចងក្រងពីកូដប្រភព (source code)។ ការចងក្រង (Compilation) គឺជាដំណើរការនៃការបកប្រែកូដប្រភពដែលមនុស្សអាចអានបាន (ឧទាហរណ៍៖ សរសេរជាភាសា C) ទៅជាកូដម៉ាស៊ីន binary machine code។
+    *   **GCC (GNU Compiler Collection):** The primary compiler used in Linux systems (កម្មវិធីបម្លែងកូដចម្បងដែលប្រើក្នុងប្រព័ន្ធ Linux)។
+    *   **Make & Makefile:** Large codebases contain hundreds of files. Running `gcc` manually on each is impossible. The `make` tool reads rules from a configuration file called `Makefile` to compile and link only the changed source files automatically.
+        គម្រោងកូដធំៗមានឯកសាររាប់រយ។ ការរត់ `gcc` ដោយដៃលើឯកសារនីមួយៗគឺមិនអាចទៅរួចទេ។ ឧបករណ៍ `make` អានវិធានពីឯកសារកំណត់រចនាសម្ព័ន្ធហៅថា `Makefile` ដើម្បីចងក្រង និងតភ្ជាប់តែឯកសារប្រភពដែលបានកែប្រែដោយស្វ័យប្រវត្តិ។
+*   **Archiving vs. Compression / ការចងក្រង ប្រៀបធៀបនឹងការបង្រួមទំហំ:**
+    *   *Archiving (`tar`):* Bundling multiple files/folders into a single file (tarball) without changing size.
+        (ការចងក្រងឯកសារ ឬថតទិន្នន័យជាច្រើនបញ្ចូលគ្នាដោយមិនប្តូរទំហំ)
+    *   *Compression (`gzip`):* Reducing storage size using mathematical algorithms. Linux typically chains these steps to produce `.tar.gz` files.
+        (ការបង្រួមទំហំឯកសារដោយប្រើក្បួនដោះស្រាយគណិតវិទ្យា។ ជាទូទៅ Linux ភ្ជាប់ជំហានទាំងនេះដើម្បីបង្កើតឯកសារ `.tar.gz`)
+
 ### 2. Command Reference / ឯកសារយោងពាក្យបញ្ជា
 
-| Command / បញ្ជា | Option / ជម្រើស | Description (English) | សេចក្តីពិពណ៌នា (ភាសាខ្មែរ) | Example / ឧទាហរណ៍ |
+| Command / បញ្ជា | Option/Args / ជម្រើស | Description (English) | សេចក្តីពិពណ៌នា (ភាសាខ្មែរ) | Example / ឧទាហរណ៍ |
 | :--- | :--- | :--- | :--- | :--- |
-| `grep` | None | Filter lines matching the string pattern | ចម្រោះបន្ទាត់ដែលត្រូវនឹងលំនាំអត្ថបទ | `grep "student" /etc/passwd` |
-| | `-i` | Case-insensitive search | ស្វែងរកដោយមិនគិតតួអក្សរធំ ឬតូច | `grep -i "ssh" /etc/services` |
-| | `-n` | Print line numbers with matches | បង្ហាញលេខរៀងបន្ទាត់រួមជាមួយលទ្ធផលដែលត្រូវគ្នា | `grep -n "bash" /etc/passwd` |
-| | `-v` | Invert search - prints non-matching lines | បញ្ច្រាសការស្វែងរក - បង្ហាញបន្ទាត់ដែលមិនមានពាក្យគន្លឹះ | `grep -v "nologin" /etc/passwd` |
-| | `-c` | Display total number of matching lines | បង្ហាញតែចំនួនបន្ទាត់ដែលត្រូវគ្នាសរុប | `grep -c "bash" /etc/passwd` |
-| `sort` | None | Sort lines alphabetically | តម្រៀបបន្ទាត់តាមលំដាប់អក្សរ | `sort names.txt` |
-| | `-n` | Sort lines numerically | តម្រៀបបន្ទាត់តាមលំដាប់លេខ | `sort -n numbers.txt` |
-| | `-r` | Reverse sort order | បញ្ច្រាសលំដាប់តម្រៀប (ពីក្រោយមកមុខ) | `sort -r names.txt` |
-| `uniq` | None | Deduplicate adjacent repeated lines | លុបបន្ទាត់ជាប់គ្នាដែលស្ទួនចេញ | `sort names.txt | uniq` |
-| | `-c` | Count frequency occurrences for each line | បន្ថែមលេខរាប់ចំនួនដងដែលបន្ទាត់នីមួយៗលេចឡើង | `sort names.txt | uniq -c` |
-| | `-d` | Display only duplicate lines | បង្ហាញតែបន្ទាត់ណាដែលមានការស្ទួនប៉ុណ្ណោះ | `sort names.txt | uniq -d` |
+| `apt-get update` | None | Refresh local database metadata cache of packages | ធ្វើបច្ចុប្បន្នភាពបញ្ជីកញ្ចប់កម្មវិធីពីឃ្លាំងស្តុក | `sudo apt-get update` |
+| `apt-get install`| `[pkg]` | Download and install package with dependencies | ទាញយក និងដំឡើងកញ្ចប់កម្មវិធីរួមទាំង dependencies | `sudo apt-get install tmux` |
+| `dpkg -i` | `[file.deb]` | Install local Debian package binary file | ដំឡើងឯកសារកញ្ចប់កម្មវិធី `.deb` ក្នុងស្រុក | `sudo dpkg -i app.deb` |
+| `dpkg -L` | `[pkg]` | List all files installed by target package | បង្ហាញបញ្ជីឯកសារទាំងអស់ដែលត្រូវបានបង្កើតដោយកម្មវិធី | `dpkg -L nano` |
+| `dnf` / `yum` | `install [pkg]` | Install package on RedHat-based systems | ដំឡើងកញ្ចប់កម្មវិធីលើប្រព័ន្ធក្រុម RedHat | `sudo dnf install httpd` |
+| `zypper` | `in [pkg]` | Install package on SUSE-based systems | ដំឡើងកញ្ចប់កម្មវិធីលើប្រព័ន្ធក្រុម SUSE | `sudo zypper in tmux` |
+| `snap` | `install [pkg]` | Install a universal sandboxed Snap package | ដំឡើងកញ្ចប់កម្មវិធីសកល Snap ក្នុងប្រអប់ខ្សាច់ | `sudo snap install vlc` |
+| `flatpak` | `install [pkg]` | Install a universal sandboxed Flatpak package | ដំឡើងកញ្ចប់កម្មវិធីសកល Flatpak | `flatpak install flathub org.gimp.GIMP` |
+| `gcc` | `-o [bin] [src]`| Compile a C source file into an executable binary | ចងក្រងឯកសារប្រភព C ទៅជាឯកសារ binary ដំណើរការបាន | `gcc -o hello hello.c` |
+| `make` | None | Automate project compilation using a Makefile | ដំណើរការដំឡើងគម្រោងស្វ័យប្រវត្តិតាម Makefile | `make` |
+| `tar` | `-czvf` | Create a gzip-compressed archive | បង្កើតឯកសារចងក្រងបង្រួមដោយ gzip (ចេញជា `.tar.gz`) | `tar -czvf backup.tar.gz src/` |
+| | `-xzvf` | Extract gzip-compressed archive contents | ពន្លា និងទាញមាតិកាចេញពីឯកសារ `.tar.gz` | `tar -xzvf backup.tar.gz` |
+| `gzip` / `gunzip`| None | Compress / Decompress a single file | បង្រួម / ពន្លា ឯកសារតែមួយគត់ | `gzip data.txt` |
+| `zip` / `unzip` | None | Zip / Unzip directories recursively | ចងក្រង និងបង្រួម/ពន្លា ថតទិន្នន័យជាឯកសារ `.zip` | `zip -r web.zip html/` |
 
-### 3. Session 5 Exercises (To Do) / លំហាត់អនុវត្តផ្នែកទី៥ (ត្រូវធ្វើ)
-1. Search for "ssh" (case-insensitive) in `/etc/services` showing line numbers, and redirect to `port_services.txt`.
-   (ស្វែងរកពាក្យ "ssh" មិនគិតតួអក្សរធំ/តូចក្នុង `/etc/services` ដោយបង្ហាញទាំងលេខបន្ទាត់ រួចបង្វែរទៅ `port_services.txt`)
-2. Create a file named `guests.txt` containing the names: `John`, `Alice`, `John`, `Bob`, `Alice`, `Alice`, and `David`.
-   (បង្កើតឯកសារឈ្មោះ `guests.txt` ដែលមានឈ្មោះ៖ `John`, `Alice`, `John`, `Bob`, `Alice`, `Alice`, និង `David`)
+### 3. Part 6 — Hands-on Examples / ឧទាហរណ៍អនុវត្តផ្ទាល់ផ្នែកទី៦
+
+#### A. Compiling from Source with GCC and Make / ការចងក្រងពីប្រភពជាមួយ GCC និង Make
+**1. Manual Compilation with GCC / ការចងក្រងដោយដៃជាមួយ GCC:**
+Create a simple C source file `hello.c`:
+(បង្កើតឯកសារប្រភព C ធម្មតាមួយឈ្មោះ `hello.c`៖)
+```c
+#include <stdio.h>
+int main() {
+    printf("Hello from compiled C program!\n");
+    return 0;
+}
+```
+Compile the code and execute the output binary:
+(ចងក្រងកូដ និងដំណើរការឯកសារ binary លទ្ធផល៖)
+```bash
+# Compile hello.c into a binary named 'hello'
+gcc -o hello hello.c
+
+# Run the compiled binary
+./hello
+# Output: Hello from compiled C program!
+```
+
+**2. Automated Builds with Make / ការបង្កើតឡើងដោយស្វ័យប្រវត្តិជាមួយ Make:**
+For larger programs, create a file named `Makefile` in the same directory:
+(សម្រាប់កម្មវិធីធំៗ បង្កើតឯកសារឈ្មោះ `Makefile` ក្នុងថតតែមួយ៖)
+```makefile
+hello: hello.c
+	gcc -o hello hello.c
+
+clean:
+	rm -f hello
+```
+> [!IMPORTANT]
+> Makefile recipe lines (e.g. `gcc -o hello hello.c`) **MUST** start with a real Tab character, not spaces, or the `make` utility will throw a syntax error.
+> បន្ទាត់រូបមន្តក្នុង Makefile (ឧទាហរណ៍៖ `gcc -o hello hello.c`) **ត្រូវតែ** ចាប់ផ្តើមដោយប៊ូតុង Tab ពិតប្រាកដ មិនមែនដកឃ្លា (spaces) ទេ បើមិនដូច្នោះទេ ឧបករណ៍ `make` នឹងបង្ហាញកំហុសវាក្យសម្ពន្ធ។
+
+Now run the build system:
+(ឥឡូវនេះដំណើរការប្រព័ន្ធ build៖)
+```bash
+# Build the application
+make
+# Output: gcc -o hello hello.c
+
+# Run the program
+./hello
+
+# Clean the workspace
+make clean
+# Output: rm -f hello
+```
+
+#### B. Querying and Installing Packages / ការស្វែងរក និងដំឡើងកញ្ចប់កម្មវិធី
+Here are equivalent operations across package systems:
+(នេះជាប្រតិបត្តិការសមមូលគ្នានៅលើប្រព័ន្ធកញ្ចប់កម្មវិធីផ្សេងៗគ្នា៖)
+```bash
+# Debian/Ubuntu (APT)
+sudo apt-get install tmux
+
+# RedHat/Fedora (DNF)
+sudo dnf install tmux
+
+# openSUSE (Zypper)
+sudo zypper install tmux
+
+# Universal Snap (Snapd)
+sudo snap install tmux
+```
+
+---
+
+### 4. Session 6 Exercises (To Do) / លំហាត់អនុវត្តផ្នែកទី៦ (ត្រូវធ្វើ)
+1. Search and install the locomotive package `sl` using your package manager.
+   (ស្វែងរក និងដំឡើងកញ្ចប់កម្មវិធី locomotive `sl` ដោយប្រើកម្មវិធីគ្រប់គ្រងកញ្ចប់)
+2. List all files installed by `sl` and redirect the file list to `locomotive_files.txt`.
+   (បង្ហាញបញ្ជីឯកសារដែលដំឡើងដោយ `sl` រួចបង្វែរវាទៅកាន់ `locomotive_files.txt`)
+3. Create a directory named `sandbox_deploy/` containing a `hello.c` file and a `Makefile`.
+   (បង្កើតថតឈ្មោះ `sandbox_deploy/` ដែលមានឯកសារ `hello.c` និង `Makefile`)
+4. Run `make` to compile the application and execute the binary. Record your output.
+   (រត់ `make` ដើម្បីចងក្រងកម្មវិធី និងដំណើរការ binary។ កត់ត្រាលទ្ធផលរបស់អ្នក)
+5. Create a plain tarball (`backup.tar`) and a compressed tarball (`backup.tar.gz`) of the `sandbox_deploy` folder. Compare the file sizes using `ls -lh` and redirect the size comparison output to `size_comparison.txt`.
+   (បង្កើតឯកសារ tar ធម្មតា `backup.tar` និងបង្រួម `backup.tar.gz` នៃថត `sandbox_deploy`។ ប្រៀបធៀបទំហំឯកសារដោយប្រើ `ls -lh` រួចបង្វែរលទ្ធផលទៅកាន់ `size_comparison.txt`)`, និង `David`)
 3. Write a pipeline using `sort` and `uniq` to count the occurrences of each name, sorting them numerically from highest frequency to lowest. Redirect the output to `guest_counts.txt`.
    (សរសេរ pipeline ដោយប្រើ `sort` និង `uniq` ដើម្បីរាប់ចំនួនដងនៃឈ្មោះនីមួយៗ តម្រៀបតាមចំនួនដងពីច្រើនបំផុតទៅតិចបំផុត រួចបង្វែរទៅ `guest_counts.txt`)
 

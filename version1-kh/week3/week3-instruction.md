@@ -92,7 +92,68 @@
 | | `chown [owner]:[group]`| Change both owner and group | ផ្លាស់ប្តូរទាំងម្ចាស់ និងក្រុមរបស់ឯកសារ | `sudo chown root:devs index.js` |
 | `chgrp` | `chgrp [group] [file]`| Change group ownership | ផ្លាស់ប្តូរក្រុមកាន់កាប់របស់ឯកសារ | `sudo chgrp devs file.txt` |
 
-### 3. Session 8 Exercises (To Do) / លំហាត់អនុវត្តផ្នែកទី៨ (ត្រូវធ្វើ)
+### 3. Part 8 — Hands-on Examples / ឧទាហរណ៍អនុវត្តផ្ទាល់ផ្នែកទី៨
+
+#### A. SUID (Set User ID) Behavior / ដំណើរការរបស់ SUID (Set User ID)
+Find a standard system command that has SUID enabled:
+(ស្វែងរកពាក្យបញ្ជាប្រព័ន្ធស្តង់ដារដែលមានបើកដំណើរការ SUID៖)
+```bash
+# Locate the passwd binary and list its permissions
+ls -l /usr/bin/passwd
+# Output: -rwsr-xr-x 1 root root 68208 May 27 2026 /usr/bin/passwd
+```
+*   Note the 's' in the owner's execute field. This indicates SUID.
+    (សម្គាល់អក្សរ 's' នៅក្នុងវាល execute របស់ម្ចាស់។ នេះបញ្ជាក់ពី SUID។)
+*   When a regular user executes 'passwd', the process runs with root permissions, allowing it to modify '/etc/shadow'.
+    (នៅពេលអ្នកប្រើធម្មតាដំណើរការ 'passwd' ដំណើរការនេះនឹងរត់ក្រោមសិទ្ធិរបស់ root ដែលអនុញ្ញាតឱ្យវាកែប្រែឯកសារ '/etc/shadow' បាន។)
+
+#### B. SGID (Set Group ID) for Collaborative Directories / SGID (Set Group ID) សម្រាប់ថតសហការគ្នា
+Create a collaborative directory where newly created files automatically inherit the parent directory's group:
+(បង្កើតថតសហការគ្នាមួយ ដែលរាល់ឯកសារបង្កើតថ្មីៗនឹងទទួលបានក្រុមកាន់កាប់ពីថតមេដោយស្វ័យប្រវត្តិ៖)
+```bash
+# Create a test directory
+mkdir project_share
+
+# Assign group ownership to a group you belong to (e.g. 'sudo' or 'developers')
+sudo chgrp sudo project_share
+
+# Enable SGID on the directory
+chmod g+s project_share
+# Or chmod 2770 project_share
+
+# Check directory permissions (note the 's' in the group's execute field)
+ls -ld project_share
+# Output: drwxrws--- 2 student sudo 4096 May 27 2026 project_share
+
+# Create a file inside as a normal user
+touch project_share/new_doc.txt
+ls -l project_share/new_doc.txt
+# Output: -rw-r----- 1 student sudo 0 May 27 2026 new_doc.txt
+```
+*   The file automatically inherited the group 'sudo' instead of the user's primary group.
+    (ឯកសារនេះបានទទួលក្រុមកាន់កាប់ 'sudo' ដោយស្វ័យប្រវត្តិ ជំនួសឱ្យក្រុមចម្បងរបស់អ្នកប្រើប្រាស់។)
+
+#### C. Sticky Bit for Shared Temporary Folders / Sticky Bit សម្រាប់ថតបណ្តោះអាសន្នរួមគ្នា
+Demonstrate that the sticky bit prevents users from deleting each other's files:
+(បង្ហាញថា sticky bit ការពារអ្នកប្រើប្រាស់មិនឱ្យលុបឯកសាររបស់គ្នាទៅវិញទៅមក៖)
+```bash
+# List /tmp folder permissions (note the 't' at the end)
+ls -ld /tmp
+# Output: drwxrwxrwt 12 root root 4096 May 27 2026 /tmp
+
+# Create a custom directory with the Sticky Bit enabled
+mkdir /var/tmp/sticky_dir
+chmod +t /var/tmp/sticky_dir
+
+ls -ld /var/tmp/sticky_dir
+# Output: drwxrwxrwt 2 student student 4096 May 27 2026 /var/tmp/sticky_dir
+```
+*   Any user can create files here, but only the owner of a file (or root) can delete it.
+    (អ្នកប្រើប្រាស់ណាក៏អាចបង្កើតឯកសារនៅទីនេះបានដែរ ប៉ុន្តែមានតែម្ចាស់ឯកសារ (ឬ root) ប៉ុណ្ណោះដែលអាចលុបវាបាន។)
+
+---
+
+### 4. Session 8 Exercises (To Do) / លំហាត់អនុវត្តផ្នែកទី៨ (ត្រូវធ្វើ)
 1. Create a file named `shared_notes.txt`. View its default permission bits and metadata.
    (បង្កើតឯកសារឈ្មោះ `shared_notes.txt`។ មើលប៊ីតសិទ្ធិលំនាំដើម និងព័ត៌មានរបស់វា)
 2. Change the group ownership of `shared_notes.txt` to `sudo` (or any available group on your machine).
@@ -147,7 +208,60 @@
 | `ping` | `-c [num]` | Send packets to verify host connectivity | ផ្ញើកញ្ចប់ទិន្នន័យដើម្បីផ្ទៀងផ្ទាត់ការតភ្ជាប់ | `ping -c 4 8.8.8.8` |
 | `ss` | `-tulpn` | Display active listening ports and sockets | បង្ហាញរន្ធបណ្តាញដែលកំពុង listening សកម្ម | `sudo ss -tulpn` |
 
-### 3. Session 9 Exercises (To Do) / លំហាត់អនុវត្តផ្នែកទី៩ (ត្រូវធ្វើ)
+### 3. Part 9 — Hands-on Examples / ឧទាហរណ៍អនុវត្តផ្ទាល់ផ្នែកទី៩
+
+#### A. Process and Job Control / ការគ្រប់គ្រងដំណើរការ និងការងារ
+Control background and foreground processes using shell jobs:
+(គ្រប់គ្រងដំណើរការ background និង foreground ដោយប្រើ shell jobs៖)
+```bash
+# Start a sleep task in the background
+sleep 600 &
+# Output: [1] 23456
+
+# List running jobs in the shell
+jobs
+# Output: [1]+  Running                 sleep 600 &
+
+# Bring the background job to the foreground
+fg %1
+
+# Suspend/pause the foreground process
+# Press Ctrl+Z
+# Output: [1]+  Stopped                 sleep 600
+
+# Resume the process in the background
+bg %1
+
+# Terminate the job using kill and its PID
+kill 23456
+# Or kill %1
+```
+
+#### B. Systemd Services and Logging / សេវាកម្ម Systemd និងការមើលកំណត់ត្រា Log
+Manage and monitor system services:
+(គ្រប់គ្រង និងតាមដានសេវាកម្មប្រព័ន្ធ៖)
+```bash
+# Check status of the cron/ssh service
+systemctl status cron
+
+# Stop the service (requires administrator rights)
+sudo systemctl stop cron
+
+# Check status again (will show inactive/dead)
+systemctl status cron
+
+# Start the service again
+sudo systemctl start cron
+
+# Query logs specific to this service using journalctl
+journalctl -u cron --no-pager -n 10
+```
+*   Shows the last 10 lines of system logs generated by the cron daemon.
+    (បង្ហាញកំណត់ត្រា log ប្រព័ន្ធ ១០ បន្ទាត់ចុងក្រោយដែលបង្កើតដោយ cron daemon។)
+
+---
+
+### 4. Session 9 Exercises (To Do) / លំហាត់អនុវត្តផ្នែកទី៩ (ត្រូវធ្វើ)
 1. Start two background tasks: `sleep 450 &` and `sleep 550 &`.
    (ចាប់ផ្តើមការងារ background ពីរ៖ `sleep 450 &` និង `sleep 550 &`)
 2. Run `jobs` and redirect the output list to `jobs_list.txt`.
