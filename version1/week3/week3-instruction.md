@@ -62,6 +62,19 @@
     *   **SGID (Set Group ID - Octal 2):** Indicated by `s` in the group execute field. For directories, files created inside inherit the parent directory's group instead of the creator's primary group.
     *   **Sticky Bit (Octal 1):** Indicated by `t` in the other execute field. For directories (e.g. `/tmp`), only the file owner, directory owner, or root can delete/rename files inside.
 
+```mermaid
+graph TD
+    subgraph SUID (Set User ID) Execution Flow
+        User["Regular User"] -- runs passwd command --> Process["Process runs as root (File Owner)"]
+        Process -- modifies --> Shadow["/etc/shadow (Restricted File)"]
+    end
+    
+    subgraph SGID (Set Group ID) Directory Collaboration
+        NormalDir["Normal Directory (Group: Alice)"] --> AliceFile["New File (Group: Alice)"]
+        SgidDir["SGID Directory (Group: developers)"] --> SgidFile["New File (Group: developers)"]
+    end
+```
+
 ### 2. Command Reference
 
 | Command | Usage | Description | Example |
@@ -148,6 +161,18 @@ ls -ld /var/tmp/sticky_dir
     *   `Ctrl+Z`: Suspends/pauses foreground processes.
     *   `jobs`: Lists jobs managed by the current shell session.
     *   `fg` / `bg`: Moves jobs to the foreground or resumes them in the background.
+
+```mermaid
+graph LR
+    subgraph Job Control State Transitions
+        FG["Foreground (Running)"] -- "Ctrl + Z" --> Stopped["Stopped (Suspended)"]
+        Stopped -- "bg %1" --> BG["Background (Running)"]
+        BG -- "fg %1" --> FG
+        BG -- "kill %1" --> Terminated["Terminated"]
+        FG -- "Ctrl + C" --> Terminated
+    end
+```
+
 *   **Signals:** Sent to communicate with processes (e.g. `SIGTERM` 15 asks to save state, `SIGKILL` 9 forces shutdown).
 *   **Resource Monitoring:** Sysadmins track CPU/RAM/Disk metrics to prevent system crashes.
 *   **Systemd Services:** Daemon processes managed centrally via `systemctl`.

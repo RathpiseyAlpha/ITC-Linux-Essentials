@@ -80,6 +80,19 @@
     *   **Sticky Bit (Octal 1):** Indicated by `t` in the other execute field. For directories (e.g. `/tmp`), only the file owner, directory owner, or root can delete/rename files inside.
         **Sticky Bit:** បង្ហាញដោយអក្សរ `t` នៅវាល execute របស់អ្នកដទៃ។ សម្រាប់ថតឯកសារ មានតែម្ចាស់ឯកសារ ម្ចាស់ថត ឬ root ប៉ុណ្ណោះដែលអាចលុប ឬប្តូរឈ្មោះឯកសារខាងក្នុងបាន (ទប់ស្កាត់ការលុបឯកសារគ្នាទៅវិញទៅមក)។
 
+```mermaid
+graph TD
+    subgraph SUID (Set User ID) Execution Flow / លំហូរដំណើរការ SUID
+        User["Regular User / អ្នកប្រើធម្មតា"] -- runs passwd command --> Process["Process runs as root / រត់ជា root"]
+        Process -- modifies --> Shadow["/etc/shadow (Restricted File / ឯកសាររឹតត្បិត)"]
+    end
+    
+    subgraph SGID (Set Group ID) Directory Collaboration / ការសហការថតតាម SGID
+        NormalDir["Normal Directory / ថតធម្មតា (Group: Alice)"] --> AliceFile["New File / ឯកសារថ្មី (Group: Alice)"]
+        SgidDir["SGID Directory / ថត SGID (Group: developers)"] --> SgidFile["New File / ឯកសារថ្មី (Group: developers)"]
+    end
+```
+
 ### 2. Command Reference / ឯកសារយោងពាក្យបញ្ជា
 
 | Command / បញ្ជា | Usage / របៀបប្រើប្រាស់ | Description (English) | សេចក្តីពិពណ៌នា (ភាសាខ្មែរ) | Example / ឧទាហរណ៍ |
@@ -180,6 +193,18 @@ ls -ld /var/tmp/sticky_dir
     *   `Ctrl+Z`: Suspends foreground process (ផ្អាកបណ្តោះអាសន្ននូវដំណើរការនៅខាងមុខ).
     *   `jobs`: Lists jobs managed by the current shell (បង្ហាញបញ្ជីការងាររបស់ shell បច្ចុប្បន្ន).
     *   `fg` / `bg`: Moves jobs to the foreground / resumes in background (នាំការងារមកខាងមុខ / ដំណើរការឡើងវិញនៅ background).
+
+```mermaid
+graph LR
+    subgraph Job Control State Transitions / ការផ្លាស់ប្តូរស្ថានភាពការងារ
+        FG["Foreground (Running) / នៅខាងមុខ (កំពុងរត់)"] -- "Ctrl + Z" --> Stopped["Stopped (Suspended) / ផ្អាក"]
+        Stopped -- "bg %1" --> BG["Background (Running) / នៅខាងក្រោយ (កំពុងរត់)"]
+        BG -- "fg %1" --> FG
+        BG -- "kill %1" --> Terminated["Terminated / បញ្ឈប់សកម្មភាព"]
+        FG -- "Ctrl + C" --> Terminated
+    end
+```
+
 *   **Signals / សញ្ញាបញ្ជា (Signals):**
     Communication signals sent to processes (e.g. `SIGTERM` 15 cleanly exit, `SIGKILL` 9 force shutdown).
     សញ្ញាគមនាគមន៍ផ្ញើទៅកាន់ដំណើរការ (ដូចជា `SIGTERM` 15 បិទដោយសន្តិវិធី, `SIGKILL` 9 បង្ខំសម្លាប់ចោល)។

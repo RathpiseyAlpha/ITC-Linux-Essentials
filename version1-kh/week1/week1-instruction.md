@@ -115,6 +115,23 @@ Run these commands and record the inputs/outputs in your report:
         **Hard Link:** ធាតុថតថ្មីដែលចង្អុលទៅកាន់ **Inode តែមួយគត់ពិតប្រាកដ** ដូចឯកសារប្រភព។ ប្រសិនបើអ្នកលុបឯកសារដើម Hard Link នៅតែរក្សាទុកទិន្នន័យដដែល។ វាមិនអាចតភ្ជាប់ថត ឬឆ្លងកាត់ប្រព័ន្ធឯកសារផ្សេងគ្នាឡើយ។
     *   **Soft (Symbolic) Link:** A special pointer file containing the *path name* of the original file (like a Windows shortcut). If the original file is deleted, the soft link breaks ("dangling link").
         **Soft (Symbolic) Link:** ឯកសារចង្អុលពិសេសដែលមានផ្ទុកផ្លូវ (path name) ទៅកាន់ឯកសារដើម (ដូច Shortcut លើ Windows)។ ប្រសិនបើលុបឯកសារដើម តំណភ្ជាប់ soft link នឹងដាច់/ខូច។
+
+```mermaid
+graph TD
+    subgraph Hard Link Diagram / គំនូសតាង Hard Link
+        H1["db.conf (Name)"] --> Inode1["Inode 12345 (Metadata)"]
+        H2["db_hard.conf (Name)"] --> Inode1
+        Inode1 --> Data1["Data Blocks (Actual Content)"]
+    end
+    
+    subgraph Symbolic Link Diagram / គំនូសតាង Symbolic Link
+        S1["db_soft.conf (Name)"] --> Path["Path String: 'db.conf'"]
+        Path --> S2["db.conf (Name)"]
+        S2 --> Inode2["Inode 76543 (Metadata)"]
+        Inode2 --> Data2["Data Blocks (Actual Content)"]
+    end
+```
+
 *   **Wildcards (Globbing) / តួអក្សរជំនួស:**
     The shell expands special characters before running a command:
     Shell បកស្រាយតួអក្សរជំនួសមុនពេលដំណើរការបញ្ជា៖

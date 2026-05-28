@@ -96,6 +96,24 @@
     Before package managers, all software had to be compiled from source. Compilation is the process of translating human-readable source code (e.g. written in C) into binary machine code.
     *   **GCC (GNU Compiler Collection):** The primary compiler used in Linux systems.
     *   **Make & Makefile:** Large codebases contain hundreds of files. Running `gcc` manually on each is impossible. The `make` tool reads rules from a configuration file called `Makefile` to compile and link only the changed source files automatically.
+
+```mermaid
+graph LR
+    subgraph GCC Compilation Flow
+        C["hello.c (C Source Code)"] --> GCC["gcc compiler"]
+        GCC --> Bin["hello (Executable Binary)"]
+    end
+```
+
+```mermaid
+graph TD
+    subgraph Makefile Automation Flow
+        Code["Source Files (hello.c)"] --> Makefile["Makefile (Build Rules)"]
+        Makefile --> Make["'make' Command"]
+        Make --> Output["Executable Binaries (hello)"]
+    end
+```
+
 *   **Archiving vs. Compression:**
     *   *Archiving (`tar`):* Bundling multiple files/folders into a single file (tarball) without changing size.
     *   *Compression (`gzip`):* Reducing storage size using mathematical algorithms. Linux typically chains these steps to produce `.tar.gz` files.

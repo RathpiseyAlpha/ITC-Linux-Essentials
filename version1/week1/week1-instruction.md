@@ -98,6 +98,23 @@ Run these commands and record the inputs/outputs in your report:
     - **Hard Link (`ln`):** Creates a new directory entry pointing to the **exact same Inode** as the source file. If you delete the original file, the hard link still works and contains the data. It cannot span across different filesystems or link directories.
     - **Symbolic/Soft Link (`ln -s`):** Creates a small special file containing the **path** to the original file (like a Windows shortcut). If you delete the original file, the soft link breaks ("dangling link"). It can span filesystems and link directories.
 
+```mermaid
+graph TD
+    subgraph Hard Link Diagram
+        H1["db.conf (Name)"] --> Inode1["Inode 12345 (Metadata)"]
+        H2["db_hard.conf (Name)"] --> Inode1
+        Inode1 --> Data1["Data Blocks (Actual Content)"]
+    end
+    
+    subgraph Symbolic Link Diagram
+        S1["db_soft.conf (Name)"] --> Path["Path String: 'db.conf'"]
+        Path --> S2["db.conf (Name)"]
+        S2 --> Inode2["Inode 76543 (Metadata)"]
+        Inode2 --> Data2["Data Blocks (Actual Content)"]
+    end
+```
+
+
 *   **OS Concept 3: Shell Wildcards (Globbing)**
     When working with large numbers of files, typing individual filenames is inefficient. The shell interprets wildcards before executing a command:
     - **`*` (Asterisk):** Matches zero or more characters. E.g., `*.txt` matches all text files.

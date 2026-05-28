@@ -102,6 +102,24 @@
     *   **GCC (GNU Compiler Collection):** The primary compiler used in Linux systems (កម្មវិធីបម្លែងកូដចម្បងដែលប្រើក្នុងប្រព័ន្ធ Linux)។
     *   **Make & Makefile:** Large codebases contain hundreds of files. Running `gcc` manually on each is impossible. The `make` tool reads rules from a configuration file called `Makefile` to compile and link only the changed source files automatically.
         គម្រោងកូដធំៗមានឯកសាររាប់រយ។ ការរត់ `gcc` ដោយដៃលើឯកសារនីមួយៗគឺមិនអាចទៅរួចទេ។ ឧបករណ៍ `make` អានវិធានពីឯកសារកំណត់រចនាសម្ព័ន្ធហៅថា `Makefile` ដើម្បីចងក្រង និងតភ្ជាប់តែឯកសារប្រភពដែលបានកែប្រែដោយស្វ័យប្រវត្តិ។
+
+```mermaid
+graph LR
+    subgraph GCC Compilation Flow / លំហូរចងក្រង GCC
+        C["hello.c (C Source Code)"] --> GCC["gcc compiler"]
+        GCC --> Bin["hello (Executable Binary)"]
+    end
+```
+
+```mermaid
+graph TD
+    subgraph Makefile Automation Flow / លំហូរស្វ័យប្រវត្តិកម្ម Makefile
+        Code["Source Files (hello.c)"] --> Makefile["Makefile (Build Rules)"]
+        Makefile --> Make["'make' Command"]
+        Make --> Output["Executable Binaries (hello)"]
+    end
+```
+
 *   **Archiving vs. Compression / ការចងក្រង ប្រៀបធៀបនឹងការបង្រួមទំហំ:**
     *   *Archiving (`tar`):* Bundling multiple files/folders into a single file (tarball) without changing size.
         (ការចងក្រងឯកសារ ឬថតទិន្នន័យជាច្រើនបញ្ចូលគ្នាដោយមិនប្តូរទំហំ)
