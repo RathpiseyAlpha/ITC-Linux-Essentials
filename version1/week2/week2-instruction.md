@@ -99,7 +99,7 @@
 
 ```mermaid
 graph LR
-    subgraph GCC Compilation Flow
+    subgraph "GCC Compilation Flow"
         C["hello.c (C Source Code)"] --> GCC["gcc compiler"]
         GCC --> Bin["hello (Executable Binary)"]
     end
@@ -107,7 +107,7 @@ graph LR
 
 ```mermaid
 graph TD
-    subgraph Makefile Automation Flow
+    subgraph "Makefile Automation Flow"
         Code["Source Files (hello.c)"] --> Makefile["Makefile (Build Rules)"]
         Makefile --> Make["'make' Command"]
         Make --> Output["Executable Binaries (hello)"]

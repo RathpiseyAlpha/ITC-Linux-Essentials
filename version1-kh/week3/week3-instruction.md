@@ -82,12 +82,12 @@
 
 ```mermaid
 graph TD
-    subgraph SUID (Set User ID) Execution Flow / លំហូរដំណើរការ SUID
+    subgraph "SUID (Set User ID) Execution Flow / លំហូរដំណើរការ SUID"
         User["Regular User / អ្នកប្រើធម្មតា"] -- runs passwd command --> Process["Process runs as root / រត់ជា root"]
         Process -- modifies --> Shadow["/etc/shadow (Restricted File / ឯកសាររឹតត្បិត)"]
     end
     
-    subgraph SGID (Set Group ID) Directory Collaboration / ការសហការថតតាម SGID
+    subgraph "SGID (Set Group ID) Directory Collaboration / ការសហការថតតាម SGID"
         NormalDir["Normal Directory / ថតធម្មតា (Group: Alice)"] --> AliceFile["New File / ឯកសារថ្មី (Group: Alice)"]
         SgidDir["SGID Directory / ថត SGID (Group: developers)"] --> SgidFile["New File / ឯកសារថ្មី (Group: developers)"]
     end
@@ -196,7 +196,7 @@ ls -ld /var/tmp/sticky_dir
 
 ```mermaid
 graph LR
-    subgraph Job Control State Transitions / ការផ្លាស់ប្តូរស្ថានភាពការងារ
+    subgraph "Job Control State Transitions / ការផ្លាស់ប្តូរស្ថានភាពការងារ"
         FG["Foreground (Running) / នៅខាងមុខ (កំពុងរត់)"] -- "Ctrl + Z" --> Stopped["Stopped (Suspended) / ផ្អាក"]
         Stopped -- "bg %1" --> BG["Background (Running) / នៅខាងក្រោយ (កំពុងរត់)"]
         BG -- "fg %1" --> FG

@@ -64,12 +64,12 @@
 
 ```mermaid
 graph TD
-    subgraph SUID (Set User ID) Execution Flow
+    subgraph "SUID (Set User ID) Execution Flow"
         User["Regular User"] -- runs passwd command --> Process["Process runs as root (File Owner)"]
         Process -- modifies --> Shadow["/etc/shadow (Restricted File)"]
     end
     
-    subgraph SGID (Set Group ID) Directory Collaboration
+    subgraph "SGID (Set Group ID) Directory Collaboration"
         NormalDir["Normal Directory (Group: Alice)"] --> AliceFile["New File (Group: Alice)"]
         SgidDir["SGID Directory (Group: developers)"] --> SgidFile["New File (Group: developers)"]
     end
@@ -164,7 +164,7 @@ ls -ld /var/tmp/sticky_dir
 
 ```mermaid
 graph LR
-    subgraph Job Control State Transitions
+    subgraph "Job Control State Transitions"
         FG["Foreground (Running)"] -- "Ctrl + Z" --> Stopped["Stopped (Suspended)"]
         Stopped -- "bg %1" --> BG["Background (Running)"]
         BG -- "fg %1" --> FG

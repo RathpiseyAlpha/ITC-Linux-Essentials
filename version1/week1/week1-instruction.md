@@ -100,13 +100,13 @@ Run these commands and record the inputs/outputs in your report:
 
 ```mermaid
 graph TD
-    subgraph Hard Link Diagram
+    subgraph "Hard Link Diagram"
         H1["db.conf (Name)"] --> Inode1["Inode 12345 (Metadata)"]
         H2["db_hard.conf (Name)"] --> Inode1
         Inode1 --> Data1["Data Blocks (Actual Content)"]
     end
     
-    subgraph Symbolic Link Diagram
+    subgraph "Symbolic Link Diagram"
         S1["db_soft.conf (Name)"] --> Path["Path String: 'db.conf'"]
         Path --> S2["db.conf (Name)"]
         S2 --> Inode2["Inode 76543 (Metadata)"]
