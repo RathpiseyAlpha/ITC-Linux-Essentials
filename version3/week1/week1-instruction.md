@@ -13,6 +13,18 @@
 ### 1. OS Concepts
 *   **Kernel, Shell, and Terminal:** The **Kernel** is the core engine managing physical hardware. The **Shell** is the command interpreter (typically `bash`). The **Terminal** is the wrapper window showing the text. You execute commands in the Terminal; the Shell parses them and instructs the Kernel.
 *   **Directory Trees:** Linux uses a unified hierarchical file system starting at root `/`. There are no drive letters (like `C:`). Each user gets a home space at `/home/<username>` (referred to as `~`).
+
+```mermaid
+graph TD
+    Root["/ (Root Directory)"] --> bin["/bin (Essential Binaries)"]
+    Root --> etc["/etc (Configuration Files)"]
+    Root --> home["/home (User Homes)"]
+    Root --> var["/var (Variable Logs & Data)"]
+    home --> student["/home/student (Student Home Space '~')"]
+    var --> log["/var/log (System Logs)"]
+```
+
+![Image Placeholder: Linux Directory Tree Structure](./images/linux_tree.png)
 *   **Pathing:** **Absolute paths** start at root `/` (e.g. `/var/log`). **Relative paths** start from your current folder (e.g. `var/log` if you are in `/`).
 *   **Getting Help:** Linux includes local documentation. You do not need internet access to find options:
     *   `man`: Detailed manual pages.
@@ -87,6 +99,13 @@ Run these commands and record the inputs/outputs in your report:
     - If you modify the symlink, you modify the target file.
     - If you delete the target file, the symlink breaks ("dangling link").
     - Syntax: `ln -s <target_file> <link_name>`
+
+```mermaid
+graph LR
+    Shortcut["shortcut.lnk (Symbolic Link File)"] -- "Contains Path: 'important.dat'" --> Target["important.dat (Target File)"]
+```
+
+![Image Placeholder: Symbolic Link Pointer Flow](./images/symbolic_link_flow.png)
     
 *   **OS Concept 2: Shell Wildcards (Globbing)**
     When working with large numbers of files, typing individual filenames is inefficient. The shell interprets wildcards before executing a command:

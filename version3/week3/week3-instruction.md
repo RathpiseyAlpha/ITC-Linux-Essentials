@@ -19,7 +19,15 @@
     *   *IP Address:* A unique numerical label identifying devices on a network (e.g. `192.168.1.12`).
     *   *Ping:* Tests if a remote host is reachable and measures response time.
     *   *Port Sockets:* Numerical endpoints mapping traffic to applications (e.g., SSH runs on port 22).
-    *   *SSH & SCP:* Secure Shell connects you to remote terminals, and Secure Copy transfers files between hosts securely.
+    *   **SSH & SCP:** Secure Shell connects you to remote terminals, and Secure Copy transfers files between hosts securely.
+
+```mermaid
+graph LR
+    LocalHost["Local Host (CLI Terminal)"] -- "ssh admin@192.168.1.10" --> RemoteServer["Remote Linux Server"]
+    LocalHost -- "scp file.txt admin@192.168.1.10:/tmp/" --> RemoteServer
+```
+
+![Image Placeholder: SSH Remote Terminal and SCP Transfer](./images/ssh_scp_networking.png)
 
 ### 2. Command Reference
 
@@ -112,6 +120,18 @@ ping -c 3 8.8.8.8
     *   *Octal Mode:* Assign absolute values from sums (e.g. `chmod 755 file.sh` -> Owner: 7 (rwx), Group: 5 (r-x), Others: 5 (r-x)).
 *   **Processes:** Running instances of program binaries in memory, identified by a **Process ID (PID)**.
 *   **Systemd Services:** Daemon processes managed centrally via `systemctl`.
+
+```mermaid
+graph TD
+    subgraph "Systemd Service Supervision"
+        Systemd["systemd (PID 1 Daemon)"] --> Service1["sshd.service (Service Wrapper)"]
+        Systemd --> Service2["cron.service (Service Wrapper)"]
+        Service1 --> Process1["sshd (Running Process PID 1042)"]
+        Service2 --> Process2["cron (Running Process PID 1048)"]
+    end
+```
+
+![Image Placeholder: Systemd Service Management and Processes](./images/systemd_processes.png)
 
 ### 2. Command Reference
 

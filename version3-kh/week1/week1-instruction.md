@@ -17,6 +17,18 @@
 *   **Directory Trees / រចនាសម្ព័ន្ធដើមឈើនៃថតទិន្នន័យ (Directory Tree):**
     Linux uses a unified hierarchical file system starting at root `/`. There are no drive letters (like `C:`). Each user gets a home space at `/home/<username>` (referred to as `~`).
     Linux ប្រើប្រាស់ប្រព័ន្ធឯកសារដែលមានឋានានុក្រមរួមគ្នតែមួយចាប់ផ្តើមពី root `/`។ វាមិនមានឈ្មោះថាស (ដូចជា `C:`) ឡើយ។ អ្នកប្រើប្រាស់ម្នាក់ៗទទួលបានថតផ្ទាល់ខ្លួននៅ `/home/<username>` (ហៅកាត់ថា `~`)។
+
+```mermaid
+graph TD
+    Root["/ (Root Directory)"] --> bin["/bin (Essential Binaries)"]
+    Root --> etc["/etc (Configuration Files)"]
+    Root --> home["/home (User Homes)"]
+    Root --> var["/var (Variable Logs & Data)"]
+    home --> student["/home/student (Student Home Space '~')"]
+    var --> log["/var/log (System Logs)"]
+```
+
+![Image Placeholder: Linux Directory Tree Structure](./images/linux_tree.png)
 *   **Pathing / ការប្រើប្រាស់ផ្លូវ (Paths):**
     **Absolute paths** start at root `/` (e.g. `/var/log`). **Relative paths** start from your current folder (e.g. `var/log` if you are in `/`).
     **ផ្លូវដាច់ខាត (Absolute paths)** ចាប់ផ្តើមពី root `/` (ឧទាហរណ៍៖ `/var/log`)។ **ផ្លូវធៀប (Relative paths)** ចាប់ផ្តើមពីថតបច្ចុប្បន្នដែលអ្នកកំពុងស្ថិតនៅ (ឧទាហរណ៍៖ `var/log` ប្រសិនបើអ្នកនៅក្នុង `/`)។
@@ -112,6 +124,13 @@ Run these commands and record the inputs/outputs in your report:
     - ប្រសិនបើអ្នកកែប្រែឯកសារ symlink នោះឯកសារគោលដៅក៏នឹងត្រូវកែប្រែដែរ។
     - ប្រសិនបើអ្នកលុបឯកសារគោលដៅចោល នោះ soft link នឹងត្រូវខូច (dangling link)។
     - ទម្រង់បញ្ជា៖ `ln -s <target_file> <link_name>`
+
+```mermaid
+graph LR
+    Shortcut["shortcut.lnk (Symbolic Link File)"] -- "Contains Path: 'important.dat'" --> Target["important.dat (Target File)"]
+```
+
+![Image Placeholder: Symbolic Link Pointer Flow](./images/symbolic_link_flow.png)
     
 *   **Wildcards (Globbing) / តួអក្សរជំនួស:**
     The shell expands special characters before running a command:

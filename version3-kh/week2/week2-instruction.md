@@ -30,6 +30,20 @@
     Connects the stdout of the left command directly to the stdin of the right command.
     ភ្ជាប់ទិន្នន័យចេញ stdout នៃបញ្ជាខាងឆ្វេង ទៅកាន់ទិន្នន័យចូល stdin នៃបញ្ជាខាងស្តាំដោយផ្ទាល់។
 
+```mermaid
+graph LR
+    Input["Input Source (stdin / Keyboard / File)"] --> Command["Command Execution"]
+    Command -- "Normal Output (stdout: FD 1)" --> Redirect1["Output File (>) / Console"]
+    Command -- "Errors Only (stderr: FD 2)" --> Redirect2["Error Log (2>) / Console"]
+```
+
+```mermaid
+graph LR
+    Cmd1["Command 1 (stdout)"] -- "Pipe (|)" --> Cmd2["Command 2 (stdin)"]
+```
+
+![Image Placeholder: Redirection and Piping Flows](./images/redirection_piping.png)
+
 ### 2. Command Reference / ឯកសារយោងពាក្យបញ្ជា
 
 | Command / បញ្ជា | Option / ជម្រើស | Description (English) | សេចក្តីពិពណ៌នា (ភាសាខ្មែរ) | Example / ឧទាហរណ៍ |
@@ -70,6 +84,14 @@
       *Compression (`gzip`):* បង្រួមទំហំផ្ទុកដោយប្រើក្បួនគណិតវិទ្យា។ Linux ជាទូទៅរួមបញ្ចូលគ្នាទាំងពីរនេះដើម្បីបង្កើតឯកសារបង្រួមប្រភេទ `.tar.gz`។
     - *Zip (`zip`/`unzip`):* A common compression format widely compatible across Windows and Linux systems.
       *Zip (`zip`/`unzip`):* ទម្រង់បង្រួមទិន្នន័យដ៏ពេញនិយមដែលមានភាពស៊ីគ្នាយ៉ាងទូលំទូលាយរវាង Windows និង Linux។
+
+```mermaid
+graph TD
+    Files["Multiple Files / Folders"] -- "1. Archive (tar)" --> Tarball["archive.tar (Single Bundle File)"]
+    Tarball -- "2. Compress (gzip)" --> Gzip["archive.tar.gz (Smaller Compressed Bundle)"]
+```
+
+![Image Placeholder: Archiving and Gzip Compression](./images/tar_compression.png)
 
 ### 2. Command Reference / ឯកសារយោងពាក្យបញ្ជា
 

@@ -22,6 +22,20 @@
     *   `/dev/null`: Virtual black hole. Writing here discards the data.
 *   **Pipes (`|`):** Connects the stdout of the left command directly to the stdin of the right command. Allows complex data filters without generating intermediate temporary files.
 
+```mermaid
+graph LR
+    Input["Input Source (stdin / Keyboard / File)"] --> Command["Command Execution"]
+    Command -- "Normal Output (stdout: FD 1)" --> Redirect1["Output File (>) / Console"]
+    Command -- "Errors Only (stderr: FD 2)" --> Redirect2["Error Log (2>) / Console"]
+```
+
+```mermaid
+graph LR
+    Cmd1["Command 1 (stdout)"] -- "Pipe (|)" --> Cmd2["Command 2 (stdin)"]
+```
+
+![Image Placeholder: Redirection and Piping Flows](./images/redirection_piping.png)
+
 ### 2. Command Reference
 
 | Command | Option | Description | Example |
@@ -52,6 +66,14 @@
     - *Archiving (`tar`):* Bundles multiple files and folders into a single file (tarball) without changing size.
     - *Compression (`gzip`):* Reduces storage size using mathematical algorithms. Linux typically combines these steps to produce compressed archive files (`.tar.gz`).
     - *Zip (`zip`/`unzip`):* A common compression format widely compatible across Windows and Linux systems.
+
+```mermaid
+graph TD
+    Files["Multiple Files / Folders"] -- "1. Archive (tar)" --> Tarball["archive.tar (Single Bundle File)"]
+    Tarball -- "2. Compress (gzip)" --> Gzip["archive.tar.gz (Smaller Compressed Bundle)"]
+```
+
+![Image Placeholder: Archiving and Gzip Compression](./images/tar_compression.png)
 
 ### 2. Command Reference
 

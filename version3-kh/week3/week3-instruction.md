@@ -30,6 +30,14 @@
     *   *SSH & SCP:* Secure Shell connects you to remote terminals, and Secure Copy transfers files securely.
         *SSH & SCP:* Secure Shell សម្រាប់ភ្ជាប់ទៅកាន់ terminal របស់ម៉ាស៊ីនពីចម្ងាយដោយសុវត្ថិភាព ហើយ Secure Copy សម្រាប់ផ្ទេរឯកសារដោយសុវត្ថិភាព។
 
+```mermaid
+graph LR
+    LocalHost["Local Host (CLI Terminal)"] -- "ssh admin@192.168.1.10" --> RemoteServer["Remote Linux Server"]
+    LocalHost -- "scp file.txt admin@192.168.1.10:/tmp/" --> RemoteServer
+```
+
+![Image Placeholder: SSH Remote Terminal and SCP Transfer](./images/ssh_scp_networking.png)
+
 ### 2. Command Reference / ឯកសារយោងពាក្យបញ្ជា
 
 | Command / បញ្ជា | Option/Args / ជម្រើស | Description (English) | សេចក្តីពិពណ៌នា (ភាសាខ្មែរ) | Example / ឧទាហរណ៍ |
@@ -114,6 +122,18 @@ Run these commands and record the inputs/outputs in your report:
 *   **Systemd Services / សេវាកម្ម Systemd:**
     Daemon processes managed centrally via `systemctl`.
     កម្មវិធីសេវាកម្មដែលដំណើរការនៅពីក្រោយ (daemons) គ្រប់គ្រងដោយឧបករណ៍ `systemctl`។
+
+```mermaid
+graph TD
+    subgraph "Systemd Service Supervision"
+        Systemd["systemd (PID 1 Daemon)"] --> Service1["sshd.service (Service Wrapper)"]
+        Systemd --> Service2["cron.service (Service Wrapper)"]
+        Service1 --> Process1["sshd (Running Process PID 1042)"]
+        Service2 --> Process2["cron (Running Process PID 1048)"]
+    end
+```
+
+![Image Placeholder: Systemd Service Management and Processes](./images/systemd_processes.png)
 
 ### 2. Command Reference / ឯកសារយោងពាក្យបញ្ជា
 
