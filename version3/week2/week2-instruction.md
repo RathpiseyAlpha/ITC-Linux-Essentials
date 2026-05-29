@@ -48,9 +48,9 @@ graph LR
 | `grep` | `-i` | Case-insensitive search of matching lines | `grep -i "ssh" /etc/services` |
 
 ### 3. Session 4 Exercises (To Do)
-1. Use `cat` with output redirection to write a file named `os_list.txt` directly from your console containing the names: `Ubuntu`, `Debian`, `CentOS`, `Fedora`, and `Arch`.
-2. Append `RedHat` and `Alpine` to `os_list.txt` in separate commands and verify the file content.
-3. Extract lines 15 to 20 of `/etc/services` using a pipeline of `head` and `tail`, and write the output to `services_range.txt`.
+1. Use `cat` with output redirection to write a file named `os_list.txt` directly from your console containing the names: `Ubuntu`, `Debian`, `CentOS`, `Fedora`, and `Arch`. *(Hint: Run `cat > os_list.txt`, type the operating systems line-by-line, then press `Ctrl+D` on a new line to save and close)*
+2. Append `RedHat` and `Alpine` to `os_list.txt` in separate commands and verify the file content. *(Hint: Use the append operator `>>`. E.g., `echo "RedHat" >> os_list.txt` and `echo "Alpine" >> os_list.txt`)*
+3. Extract lines 15 to 20 of `/etc/services` using a pipeline of `head` and `tail`, and write the output to `services_range.txt`. *(Hint: Use `head -n 20 /etc/services | tail -n 6 > services_range.txt`)*
 4. Count the number of lines in `/etc/passwd` containing the word `nologin` using `grep` and `wc -l` via a pipe, and record the command and result.
 
 ---
@@ -197,8 +197,8 @@ You are a Junior System Administrator at **Apex Systems**. The staging server ac
     ```
 2.  **Audit Staging Web Logs:**
     *   Count the total log entries in `/var/tmp/apex_logs/web_access.log`.
-    *   Filter out all failed requests (HTTP status codes `401` or `404`) and write them to `failed_attempts.txt`.
-    *   Search for lines containing search patterns for `/etc/passwd` and save matching lines to `attack_signatures.txt`.
+    *   Filter out all failed requests (HTTP status codes `401` or `404`) and write them to `failed_attempts.txt`. *(Hint: Use `grep -E "401|404" /var/tmp/apex_logs/web_access.log > failed_attempts.txt`)*
+    *   Search for lines containing search patterns for `/etc/passwd` and save matching lines to `attack_signatures.txt`. *(Hint: Use `grep "/etc/passwd" /var/tmp/apex_logs/web_access.log > attack_signatures.txt`)*
 3.  **Write the Automated Audit Script:**
     Create a shell script named `auto_audit.sh`. The script must perform the following actions sequentially:
     *   Create a temporary workspace directory named `audit_area/`.

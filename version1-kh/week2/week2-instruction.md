@@ -42,13 +42,13 @@
 | | `-c` | Display count of bytes/characters in a stream | បង្ហាញចំនួនតួអក្សរ/បៃសរុប | `wc -c file.txt` |
 
 ### 3. Session 4 Exercises (To Do) / លំហាត់អនុវត្តផ្នែកទី៤ (ត្រូវធ្វើ)
-1. Use `cat` with output redirection to write a file named `os_list.txt` directly from your console containing the names: `Ubuntu`, `Debian`, `CentOS`, `Fedora`, and `Arch`.
+1. Use `cat` with output redirection to write a file named `os_list.txt` directly from your console containing the names: `Ubuntu`, `Debian`, `CentOS`, `Fedora`, and `Arch`. *(Hint: Run `cat > os_list.txt`, type the operating systems line-by-line, then press `Ctrl+D` on a new line to save and close)*
    (ប្រើ `cat` ជាមួយការបង្វែរលទ្ធផលដើម្បីបង្កើតឯកសារ `os_list.txt` ផ្ទាល់ពី console ដែលមានឈ្មោះ៖ `Ubuntu`, `Debian`, `CentOS`, `Fedora`, និង `Arch`)
-2. Append `RedHat` and `Alpine` to `os_list.txt` in separate commands and verify the file content.
+2. Append `RedHat` and `Alpine` to `os_list.txt` in separate commands and verify the file content. *(Hint: Use the append operator `>>`. E.g., `echo "RedHat" >> os_list.txt` and `echo "Alpine" >> os_list.txt`)*
    (សរសេរបន្ថែម `RedHat` និង `Alpine` ទៅក្នុង `os_list.txt` ដោយបញ្ជាផ្សេងគ្នា រួចផ្ទៀងផ្ទាត់មាតិកាឯកសារ)
 3. Attempt to run `ls /dummy_folder_test` (which does not exist) and redirect the stderr message into `stderr_log.txt`.
    (សាកល្បងដំណើរការ `ls /dummy_folder_test` ដែលគ្មានពិតប្រាកដ រួចបង្វែរសារកំហុសទៅក្នុង `stderr_log.txt`)
-4. Extract lines 20 to 25 of `/etc/services` using a pipeline of `head` and `tail`, and write the output to `services_range.txt`.
+4. Extract lines 20 to 25 of `/etc/services` using a pipeline of `head` and `tail`, and write the output to `services_range.txt`. *(Hint: Use `head -n 20 /etc/services | tail -n 6 > services_range.txt`)*
    (ទាញយកបន្ទាត់ទី ២០ ដល់ ២៥ នៃ `/etc/services` ដោយប្រើ pipeline របស់ `head` និង `tail` រួចសរសេរទៅកាន់ `services_range.txt`)
 5. Use `wc` to count lines in `/etc/services` and append the number to `services_range.txt`.
    (ប្រើ `wc` ដើម្បីរាប់ចំនួនបន្ទាត់សរុបក្នុង `/etc/services` រួចសរសេរបន្ថែមវាទៅកាន់ `services_range.txt`)
@@ -220,13 +220,13 @@ sudo snap install tmux
 ### 4. Session 6 Exercises (To Do) / លំហាត់អនុវត្តផ្នែកទី៦ (ត្រូវធ្វើ)
 1. Search and install the locomotive package `sl` using your package manager.
    (ស្វែងរក និងដំឡើងកញ្ចប់កម្មវិធី locomotive `sl` ដោយប្រើកម្មវិធីគ្រប់គ្រងកញ្ចប់)
-2. List all files installed by `sl` and redirect the file list to `locomotive_files.txt`.
+2. List all files installed by `sl` and redirect the file list to `locomotive_files.txt`. *(Hint: Use `dpkg -L sl > locomotive_files.txt`)*
    (បង្ហាញបញ្ជីឯកសារដែលដំឡើងដោយ `sl` រួចបង្វែរវាទៅកាន់ `locomotive_files.txt`)
 3. Create a directory named `sandbox_deploy/` containing a `hello.c` file and a `Makefile`.
    (បង្កើតថតឈ្មោះ `sandbox_deploy/` ដែលមានឯកសារ `hello.c` និង `Makefile`)
 4. Run `make` to compile the application and execute the binary. Record your output.
    (រត់ `make` ដើម្បីចងក្រងកម្មវិធី និងដំណើរការ binary។ កត់ត្រាលទ្ធផលរបស់អ្នក)
-5. Create a plain tarball (`backup.tar`) and a compressed tarball (`backup.tar.gz`) of the `sandbox_deploy` folder. Compare the file sizes using `ls -lh` and redirect the size comparison output to `size_comparison.txt`.
+5. Create a plain tarball (`backup.tar`) and a compressed tarball (`backup.tar.gz`) of the `sandbox_deploy` folder. Compare the file sizes using `ls -lh` and redirect the size comparison output to `size_comparison.txt`. *(Hint: Use `ls -lh backup.tar backup.tar.gz > size_comparison.txt`)*
    (បង្កើតឯកសារ tar ធម្មតា `backup.tar` និងបង្រួម `backup.tar.gz` នៃថត `sandbox_deploy`។ ប្រៀបធៀបទំហំឯកសារដោយប្រើ `ls -lh` រួចបង្វែរលទ្ធផលទៅកាន់ `size_comparison.txt`)`, និង `David`)
 3. Write a pipeline using `sort` and `uniq` to count the occurrences of each name, sorting them numerically from highest frequency to lowest. Redirect the output to `guest_counts.txt`.
    (សរសេរ pipeline ដោយប្រើ `sort` និង `uniq` ដើម្បីរាប់ចំនួនដងនៃឈ្មោះនីមួយៗ តម្រៀបតាមចំនួនដងពីច្រើនបំផុតទៅតិចបំផុត រួចបង្វែរទៅ `guest_counts.txt`)
@@ -268,13 +268,13 @@ sudo snap install tmux
 ### 3. Session 6 Exercises (To Do) / លំហាត់អនុវត្តផ្នែកទី៦ (ត្រូវធ្វើ)
 1. Search and install the locomotive package `sl` using your package manager.
    (ស្វែងរក និងដំឡើងកញ្ចប់កម្មវិធី locomotive `sl` ដោយប្រើកម្មវិធីគ្រប់គ្រងកញ្ចប់)
-2. List all files installed by `sl` and redirect the file list to `locomotive_files.txt`.
+2. List all files installed by `sl` and redirect the file list to `locomotive_files.txt`. *(Hint: Use `dpkg -L sl > locomotive_files.txt`)*
    (បង្ហាញបញ្ជីឯកសារដែលដំឡើងដោយ `sl` រួចបង្វែរវាទៅកាន់ `locomotive_files.txt`)
 3. Create a directory named `sandbox_deploy/` containing `package.json`, `index.js`, and `README.md`.
    (បង្កើតថតឈ្មោះ `sandbox_deploy/` ដែលមានឯកសារ `package.json`, `index.js`, និង `README.md`)
 4. Create a plain tarball (`backup.tar`) and a compressed tarball (`backup.tar.gz`) of the folder.
    (បង្កើតឯកសារ tar ធម្មតា `backup.tar` និងបង្រួម `backup.tar.gz` នៃថតនោះ)
-5. Compare the file sizes using `ls -lh` and redirect the size comparison output to `size_comparison.txt`.
+5. Compare the file sizes using `ls -lh` and redirect the size comparison output to `size_comparison.txt`. *(Hint: Use `ls -lh backup.tar backup.tar.gz > size_comparison.txt`)*
    (ប្រៀបធៀបទំហំឯកសារដោយប្រើ `ls -lh` រួចបង្វែរលទ្ធផលទៅកាន់ `size_comparison.txt`)
 
 ---
@@ -342,10 +342,10 @@ You are a DevOps Engineer at **Apex Systems**. The staging server has been slow,
 2. **Audit Staging Web Logs / វិភាគកំណត់ត្រា Log គេហទំព័រ៖**
    * Count the total logs in `/var/tmp/apex_logs/web_access.log`.
      (រាប់ចំនួនកំណត់ត្រា log សរុបដែលមាននៅក្នុងឯកសារ log access)
-   * Filter out failed requests (HTTP status codes `401` or `404`) and write them to `failed_attempts.txt`.
-     (ចម្រោះយកសំណើបរាជ័យ (status code 401 ឬ 404) រួចសរសេរទៅក្នុង `failed_attempts.txt`)
-   * Search for files containing signature matches for `/etc/passwd` and save matching lines to `attack_signatures.txt`.
-     (ស្វែងរកការព្យាយាមចូលទៅកាន់ឯកសារ `/etc/passwd` រួចសរសេរបន្ទាត់ទាំងនោះទៅក្នុង `attack_signatures.txt`)
+   * Filter out failed requests (HTTP status codes `401` or `404`) and write them to `failed_attempts.txt`. *(Hint: Use `grep -E "401|404" /var/tmp/apex_logs/web_access.log > failed_attempts.txt`)*
+     (ចម្រោះយកសំណើបរាជ័យ (status code 401 ឬ 404) រួចសរសេរទៅក្នុង `failed_attempts.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `grep -E "401|404" /var/tmp/apex_logs/web_access.log > failed_attempts.txt`)*)
+   * Search for files containing signature matches for `/etc/passwd` and save matching lines to `attack_signatures.txt`. *(Hint: Use `grep "/etc/passwd" /var/tmp/apex_logs/web_access.log > attack_signatures.txt`)*
+     (ស្វែងរកការព្យាយាមចូលទៅកាន់ឯកសារ `/etc/passwd` រួចសរសេរបន្ទាត់ទាំងនោះទៅក្នុង `attack_signatures.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `grep "/etc/passwd" /var/tmp/apex_logs/web_access.log > attack_signatures.txt`)*)
    * Extract the URL requested (the 7th space-separated field). Count the occurrences of each URL, sort them from highest hit frequency to lowest, and write the list to `frequent_targets.txt`.
      (ទាញយក URL ដែលបានទាមទារ (វាល field ទី ៧) រាប់ចំនួនដងនៃ URL នីមួយៗ រួចតម្រៀបពីច្រើនទៅតិច និងសរសេរទៅក្នុង `frequent_targets.txt`)
 3. **Deploy and Archive Application / ដាក់ឱ្យដំណើរការ និងចងក្រងកម្មវិធី៖**

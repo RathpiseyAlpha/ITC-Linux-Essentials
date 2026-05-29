@@ -14,6 +14,9 @@
 *   **Kernel, Shell, and Terminal:** The **Kernel** is the core engine managing physical hardware. The **Shell** is the command interpreter (typically `bash`). The **Terminal** is the wrapper window showing the text. You execute commands in the Terminal; the Shell parses them and instructs the Kernel.
 *   **Directory Trees:** Linux uses a unified hierarchical file system starting at root `/`. There are no drive letters (like `C:`). Each user gets a home space at `/home/<username>` (referred to as `~`).
 *   **Pathing:** **Absolute paths** start at root `/` (e.g. `/var/log`). **Relative paths** start from your current folder (e.g. `var/log` if you are in `/`).
+*   **Output Redirection (`>` and `>>`):** Used to send the output of a command directly into a text file instead of printing it to the terminal screen.
+    *   `>` (Overwrite Redirect): Creates a new file or replaces the existing content of a file. E.g., `command > file.txt`
+    *   `>>` (Append Redirect): Appends the output to the end of a file without deleting its existing content. E.g., `command >> file.txt`
 *   **Getting Help:** Linux includes local documentation. You do not need internet access to find options:
     *   `man`: Detailed manual pages.
     *   `info`: Hypertext-linked menu guides.
@@ -48,8 +51,8 @@ Run these commands and record the inputs/outputs in your report:
 1. Navigate to `/usr/share/doc` and list its contents sorted by size.
 2. Go straight back to your home directory in a single command.
 3. List your home directory showing hidden configuration files (e.g. `.bashrc`).
-4. Run `whatis` on `mkdir`, `rm`, `cp`, and `mv`, and redirect the output to `whatis_summary.txt`.
-5. Display the last 15 items in your command history and save it to `history_list.txt`.
+4. Run `whatis` on `mkdir`, `rm`, `cp`, and `mv`, and redirect the output to `whatis_summary.txt`. *(Hint: Use the `>` operator to redirect output. For example: `whatis mkdir > whatis_summary.txt`)*
+5. Display the last 15 items in your command history and save it to `history_list.txt`. *(Hint: Use the `>` operator to redirect output. For example: `history 15 > history_list.txt`)*
 
 ---
 
@@ -234,7 +237,7 @@ You have been hired as a DevOps Engineer at **Apex Systems**. The staging server
     ```
 2.  **Audit the Server:**
     *   Locate `/var/tmp/apex_audit/`. List all files inside, sorted by size (largest first).
-    *   Write the system kernel release version and the file list output to `audit_report.txt`.
+    *   Write the system kernel release version and the file list output to `audit_report.txt`. *(Hint: Write the kernel version with `uname -r > audit_report.txt`, then append the directory listing with `ls -laS /var/tmp/apex_audit >> audit_report.txt`)*
 3.  **Organize Project Apollo:**
     *   Create the structured folder layout: `apollo/production/config/`, `apollo/production/bin/`, and `apollo/backups/`.
     *   Move all active system configuration files (`.conf`) from `apollo_temp/` to `apollo/production/config/`.
@@ -242,7 +245,7 @@ You have been hired as a DevOps Engineer at **Apex Systems**. The staging server
     *   Create a **Hard Link** of `apollo/production/config/system.conf` inside `apollo/backups/` named `system_conf.bak`.
     *   Create a **Symbolic Link** to the production script `apollo/production/bin/run_app.sh` directly in the `apollo/` root directory named `quick_run.sh`.
     *   **Delete** all draft and temporary files (`.tmp` files and any files containing the word `draft` in their name) from `apollo_temp/` in a single command using wildcards.
-    *   List the recursive file structure of `apollo` using `ls -R apollo` and save it to `apollo_structure.txt`. Remove any remaining temporary setup folders.
+    *   List the recursive file structure of `apollo` using `ls -R apollo` and save it to `apollo_structure.txt`. Remove any remaining temporary setup folders. *(Hint: Use `ls -R apollo > apollo_structure.txt`)*
 
 ---
 

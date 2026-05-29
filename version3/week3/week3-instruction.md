@@ -70,10 +70,10 @@ ping -c 3 8.8.8.8
 ```
 
 ### 4. Session 7 Exercises (To Do)
-1. Run `lscpu` and find the CPU model name. Write it to `hw_audit.txt`.
-2. Append the total RAM size (from `free -h`) and disk space information (from `df -h`) to `hw_audit.txt`.
-3. Check your system's network IP addresses and append the output of `ip addr` to `hw_audit.txt`.
-4. Ping the loopback address `127.0.0.1` 4 times and save the output to `ping_audit.txt`.
+1. Run `lscpu` and find the CPU model name. Write it to `hw_audit.txt`. *(Hint: Use `lscpu | grep "Model name" > hw_audit.txt`)*
+2. Append the total RAM size (from `free -h`) and disk space information (from `df -h`) to `hw_audit.txt`. *(Hint: Use `free -h >> hw_audit.txt` and `df -h >> hw_audit.txt`)*
+3. Check your system's network IP addresses and append the output of `ip addr` to `hw_audit.txt`. *(Hint: Use `ip addr >> hw_audit.txt`)*
+4. Ping the loopback address `127.0.0.1` 4 times and save the output to `ping_audit.txt`. *(Hint: Use `ping -c 4 127.0.0.1 > ping_audit.txt`)*
 
 ---
 
@@ -101,9 +101,9 @@ ping -c 3 8.8.8.8
 | `whoami` | None | Show current active username | `whoami` |
 
 ### 3. Session 8 Exercises (To Do)
-1. Inspect the first 5 entries of `/etc/passwd` and save the list to `passwd_head.txt`.
+1. Inspect the first 5 entries of `/etc/passwd` and save the list to `passwd_head.txt`. *(Hint: Use `head -n 5 /etc/passwd > passwd_head.txt`)*
 2. Create a group named `study_group` and a user named `learner` with `study_group` as their primary group.
-3. Verify GID and group settings of `learner` using `id` and redirect the output to `learner_id.txt`.
+3. Verify GID and group settings of `learner` using `id` and redirect the output to `learner_id.txt`. *(Hint: Use `id learner > learner_id.txt`)*
 4. Delete the user `learner` and group `study_group` from the system using cleanup commands.
 
 ---
@@ -147,8 +147,8 @@ graph TD
 ### 3. Session 9 Exercises (To Do)
 1. Find a running process named `bash` using `ps aux | grep bash` and identify its PID.
 2. Create a folder named `secure_workspace/` and change its permission to `700` using octal mode.
-3. List the directory properties using `ls -ld secure_workspace` and redirect the output to `permissions_check.txt`.
-4. Check the running status of the cron daemon using `systemctl status cron` and redirect it to `cron_status.txt`.
+3. List the directory properties using `ls -ld secure_workspace` and redirect the output to `permissions_check.txt`. *(Hint: Use `ls -ld secure_workspace > permissions_check.txt`)*
+4. Check the running status of the cron daemon using `systemctl status cron` and redirect it to `cron_status.txt`. *(Hint: Use `systemctl status cron > cron_status.txt`)*
 
 ---
 
@@ -179,10 +179,10 @@ You are a Junior Systems Administrator at **Apex Systems**. The staging web serv
     ```
 2.  **Audit Hardware Specifications:**
     *   Audit the machine's hardware to report specifications. Inspect CPU cores and total memory.
-    *   Write the hardware specs summary to `sys_spec.txt`.
+    *   Write the hardware specs summary to `sys_spec.txt`. *(Hint: Use `lscpu > sys_spec.txt`)*
 3.  **Check Open Port Bindings:**
     *   Locate active open listening network sockets and ports on the machine.
-    *   Write the open port socket listing to `ports_active.txt`.
+    *   Write the open port socket listing to `ports_active.txt`. *(Hint: Use `ss -lntu > ports_active.txt`)*
 4.  **Configure Project Mercury Workspace:**
     *   The folder `/var/tmp/mercury_dev` must be configured for the group `mercury_team`.
     *   Set the folder owner to `engineer_alice` and group to `mercury_team`.
@@ -190,12 +190,12 @@ You are a Junior Systems Administrator at **Apex Systems**. The staging web serv
         *   The owner has read, write, and execute (`rwx` = 7).
         *   The group has read, write, and execute (`rwx` = 7).
         *   Others have no permissions (`---` = 0).
-    *   Verify the folder permissions and group ownership using `ls -ld` and redirect output to `mercury_permissions.txt`.
+    *   Verify the folder permissions and group ownership using `ls -ld` and redirect output to `mercury_permissions.txt`. *(Hint: Use `ls -ld mercury_dev > mercury_permissions.txt`)*
 5.  **Diagnose and Recover Rogue Server:**
     *   Use `ps aux` to locate the rogue background script named `./rogue_loop.sh` and identify its PID.
     *   Kill the runaway process using `kill` (use force kill `-9` if necessary).
-    *   Verify the process is gone. Check system memory availability and write the output status to `system_recovery.txt`.
-    *   Verify loopback ping connectivity. Ping `127.0.0.1` 4 times and append the results to `system_recovery.txt`.
+    *   Verify the process is gone. Check system memory availability and write the output status to `system_recovery.txt`. *(Hint: Use `free -h > system_recovery.txt`)*
+    *   Verify loopback ping connectivity. Ping `127.0.0.1` 4 times and append the results to `system_recovery.txt`. *(Hint: Use `ping -c 4 127.0.0.1 >> system_recovery.txt`)*
     *   Clean up by deleting `rogue_loop.sh` from your directory.
 
 ---

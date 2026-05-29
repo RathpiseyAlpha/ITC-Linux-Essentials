@@ -49,12 +49,12 @@
 | `whoami` | None | Show current active username | បង្ហាញឈ្មោះគណនីកំពុងសកម្ម | `whoami` |
 
 ### 3. Session 7 Exercises (To Do) / លំហាត់អនុវត្តផ្នែកទី៧ (ត្រូវធ្វើ)
-1. Inspect the first 5 entries of `/etc/passwd` and save the list to `passwd_head.txt`.
-   (ពិនិត្យមើលគណនី ៥ ដំបូងក្នុង `/etc/passwd` រួចរក្សាទុកក្នុង `passwd_head.txt`)
+1. Inspect the first 5 entries of `/etc/passwd` and save the list to `passwd_head.txt`. *(Hint: Use `head -n 5 /etc/passwd > passwd_head.txt`)*
+   (ពិនិត្យមើលគណនី ៥ ដំបូងក្នុង `/etc/passwd` រួចរក្សាទុកក្នុង `passwd_head.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `head -n 5 /etc/passwd > passwd_head.txt`)*)
 2. Create a group named `study_group` and a user named `learner` with `study_group` as their primary group.
    (បង្កើតក្រុមឈ្មោះ `study_group` និងអ្នកប្រើប្រាស់ `learner` ដោយកំណត់ក្រុមចម្បងរបស់ពួកគេជា `study_group`)
-3. Verify GID and group settings of `learner` using `id` and redirect the output to `learner_id.txt`.
-   (ផ្ទៀងផ្ទាត់ការកំណត់ GID និងក្រុមរបស់ `learner` ដោយប្រើ `id` រួចបង្វែរលទ្ធផលទៅ `learner_id.txt`)
+3. Verify GID and group settings of `learner` using `id` and redirect the output to `learner_id.txt`. *(Hint: Use `id learner > learner_id.txt`)*
+   (ផ្ទៀងផ្ទាត់ការកំណត់ GID និងក្រុមរបស់ `learner` ដោយប្រើ `id` រួចបង្វែរលទ្ធផលទៅ `learner_id.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `id learner > learner_id.txt`)*)
 4. Delete the user `learner` and group `study_group` from the system using cleanup commands.
    (លុបអ្នកប្រើប្រាស់ `learner` និងក្រុម `study_group` ចេញពីប្រព័ន្ធវិញដោយប្រើបញ្ជាសម្អាត)
 
@@ -289,7 +289,7 @@ journalctl -u cron --no-pager -n 10
 ### 4. Session 9 Exercises (To Do) / លំហាត់អនុវត្តផ្នែកទី៩ (ត្រូវធ្វើ)
 1. Start two background tasks: `sleep 450 &` and `sleep 550 &`.
    (ចាប់ផ្តើមការងារ background ពីរ៖ `sleep 450 &` និង `sleep 550 &`)
-2. Run `jobs` and redirect the output list to `jobs_list.txt`.
+2. Run `jobs` and redirect the output list to `jobs_list.txt`. *(Hint: Use `jobs > jobs_list.txt`)*
    (ដំណើរការ `jobs` រួចបង្វែរលទ្ធផលទៅកាន់ `jobs_list.txt`)
 3. Terminate both sleep processes using their PIDs.
    (បញ្ឈប់ដំណើរការ sleep ទាំងពីរដោយប្រើប្រាស់លេខ PID របស់ពួកវា)
@@ -339,8 +339,8 @@ You are a Systems Administrator at **Apex Systems**. The management office requi
      * Others have no permissions (`---` = 0). (អ្នកផ្សេងទៀតគ្មានសិទ្ធិអ្វីទាំងអស់ `---` = 0)
      * Add **SGID** (Set Group ID) to the folder (using octal `2` prefix, e.g. `2770`), ensuring that any files created inside by Bob or Alice inherit the `mercury_team` group ownership automatically.
        (បន្ថែមសិទ្ធិ **SGID** លើថតនោះ (ប្រើបុព្វបទលេខ `2` ឧទាហរណ៍៖ `2770`) ដើម្បីធានាថាឯកសារទាំងឡាយដែលបង្កើតដោយ Bob ឬ Alice នឹងទទួលបានក្រុមកាន់កាប់ `mercury_team` ដោយស្វ័យប្រវត្ត)
-   * Verify the folder permissions and group ownership using `ls -ld` and redirect output to `mercury_permissions.txt`.
-     (ផ្ទៀងផ្ទាត់សិទ្ធិថត និងក្រុមកាន់កាប់ដោយប្រើ `ls -ld` រួចបង្វែរលទ្ធផលទៅ `mercury_permissions.txt`)
+   * Verify the folder permissions and group ownership using `ls -ld` and redirect output to `mercury_permissions.txt`. *(Hint: Use `ls -ld /var/tmp/mercury_dev > mercury_permissions.txt`)*
+     (ផ្ទៀងផ្ទាត់សិទ្ធិថត និងក្រុមកាន់កាប់ដោយប្រើ `ls -ld` រួចបង្វែរលទ្ធផលទៅ `mercury_permissions.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `ls -ld /var/tmp/mercury_dev > mercury_permissions.txt`)*)
    * List group memberships of Alice and Bob and write them to `mercury_team_members.txt`.
      (បង្ហាញបញ្ជីក្រុមសមាជិករបស់ Alice និង Bob រួចសរសេរទៅក្នុង `mercury_team_members.txt`)
 3. **Diagnose and Recover Rogue Server / ស្វែងរក និងស្ដារម៉ាស៊ីនមេឡើងវិញ៖**
@@ -348,8 +348,8 @@ You are a Systems Administrator at **Apex Systems**. The management office requi
      (ប្រើ `ps aux` ដើម្បីស្វែងរកដំណើរការស្គ្រីបខូចឈ្មោះ `./rogue_loop.sh` និងកំណត់អត្តសញ្ញាណលេខ PID របស់វា)
    * Kill the runaway process using `kill` (use force kill `-9` if necessary).
      (សម្លាប់ដំណើរការនោះចោលដោយប្រើ `kill` (ឬប្រើសញ្ញាបង្ខំលុប `-9` បើចាំបាច់))
-   * Verify the process is gone. Check system memory availability and write the output status to `system_recovery.txt`.
-     (ផ្ទៀងផ្ទាត់ថាដំណើរការនោះបាត់ឬនៅ ពិនិត្យទំហំ RAM ដែលទំនេរ រួចកត់ត្រាទៅក្នុង `system_recovery.txt`)
+   * Verify the process is gone. Check system memory availability and write the output status to `system_recovery.txt`. *(Hint: Use `free -h > system_recovery.txt`)*
+     (ផ្ទៀងផ្ទាត់ថាដំណើរការនោះបាត់ឬនៅ ពិនិត្យទំហំ RAM ដែលទំនេរ រួចកត់ត្រាទៅក្នុង `system_recovery.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `free -h > system_recovery.txt`)*)
    * Confirm port connections. Run `ss` to check active listening ports and write the output to `port_check.txt`.
      (ពិនិត្យការតភ្ជាប់រន្ធដោត ដោយរត់ `ss` ដើម្បីមើលរន្ធកំពុង listening រួចសរសេរទៅក្នុង `port_check.txt`)
    * Verify connectivity. Ping the server gateway (`8.8.8.8`) 4 times and append the results to `system_recovery.txt`.

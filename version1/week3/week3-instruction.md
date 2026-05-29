@@ -40,9 +40,9 @@
 | `whoami` | None | Show current active username | `whoami` |
 
 ### 3. Session 7 Exercises (To Do)
-1. Inspect the first 5 entries of `/etc/passwd` and save the list to `passwd_head.txt`.
+1. Inspect the first 5 entries of `/etc/passwd` and save the list to `passwd_head.txt`. *(Hint: Use `head -n 5 /etc/passwd > passwd_head.txt`)*
 2. Create a group named `study_group` and a user named `learner` with `study_group` as their primary group.
-3. Verify GID and group settings of `learner` using `id` and redirect the output to `learner_id.txt`.
+3. Verify GID and group settings of `learner` using `id` and redirect the output to `learner_id.txt`. *(Hint: Use `id learner > learner_id.txt`)*
 4. Delete the user `learner` and group `study_group` from the system using cleanup commands.
 
 ---
@@ -253,7 +253,7 @@ journalctl -u cron --no-pager -n 10
 
 ### 4. Session 9 Exercises (To Do)
 1. Start two background tasks: `sleep 450 &` and `sleep 550 &`.
-2. Run `jobs` and redirect the output list to `jobs_list.txt`.
+2. Run `jobs` and redirect the output list to `jobs_list.txt`. *(Hint: Use `jobs > jobs_list.txt`)*
 3. Terminate both sleep processes using their PIDs.
 4. Save human-readable RAM utilization to `memory_status.txt` and disk filesystem statistics to `disk_status.txt`.
 5. Ping the local loopback address `127.0.0.1` 4 times and save the output to `ping_localhost.txt`.
@@ -293,12 +293,12 @@ You are a Systems Administrator at **Apex Systems**. The management office requi
         *   The group has read, write, and execute (`rwx` = 7).
         *   Others have no permissions (`---` = 0).
         *   Add **SGID** (Set Group ID) to the folder (octal `2` prefix, e.g. `2770`), ensuring that any files created inside by Bob or Alice inherit the `mercury_team` group ownership automatically.
-    *   Verify the folder permissions and group ownership using `ls -ld` and redirect output to `mercury_permissions.txt`.
+    *   Verify the folder permissions and group ownership using `ls -ld` and redirect output to `mercury_permissions.txt`. *(Hint: Use `ls -ld mercury_dev > mercury_permissions.txt`)*
     *   List group memberships of Alice and Bob and write them to `mercury_team_members.txt`.
 3.  **Diagnose and Recover Rogue Server:**
     *   Use `ps aux` to locate the rogue background script named `./rogue_loop.sh` and identify its PID.
     *   Kill the runaway process using `kill` (use force kill `-9` if necessary).
-    *   Verify the process is gone. Check system memory availability and write the output status to `system_recovery.txt`.
+    *   Verify the process is gone. Check system memory availability and write the output status to `system_recovery.txt`. *(Hint: Use `free -h > system_recovery.txt`)*
     *   Confirm port connections. Run `ss` to check active listening ports and write the output to `port_check.txt`.
     *   Verify connectivity. Ping the server gateway (`8.8.8.8`) 4 times and append the results to `system_recovery.txt`.
     *   Clean up by deleting `rogue_loop.sh` from your directory.

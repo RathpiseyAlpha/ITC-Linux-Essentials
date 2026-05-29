@@ -26,6 +26,9 @@ graph TD
 
 ![Image Placeholder: Linux Directory Tree Structure](./images/linux_tree.png)
 *   **Pathing:** **Absolute paths** start at root `/` (e.g. `/var/log`). **Relative paths** start from your current folder (e.g. `var/log` if you are in `/`).
+*   **Output Redirection (`>` and `>>`):** Used to send the output of a command directly into a text file instead of printing it to the terminal screen.
+    *   `>` (Overwrite Redirect): Creates a new file or replaces the existing content of a file. E.g., `command > file.txt`
+    *   `>>` (Append Redirect): Appends the output to the end of a file without deleting its existing content. E.g., `command >> file.txt`
 *   **Getting Help:** Linux includes local documentation. You do not need internet access to find options:
     *   `man`: Detailed manual pages.
     *   `--help` or `-h`: Inline application flags.
@@ -55,8 +58,8 @@ Run these commands and record the inputs/outputs in your report:
 1. Navigate to `/usr/share/doc` and list its contents.
 2. Go straight back to your home directory in a single command.
 3. List your home directory showing hidden configuration files (e.g. `.bashrc`).
-4. Run `whatis` on `mkdir`, `rm`, `cp`, and `mv`, and redirect the output to `whatis_summary.txt`.
-5. Display the last 10 items in your command history and save it to `history_list.txt`.
+4. Run `whatis` on `mkdir`, `rm`, `cp`, and `mv`, and redirect the output to `whatis_summary.txt`. *(Hint: Use the `>` operator to redirect output. For example: `whatis mkdir > whatis_summary.txt`)*
+5. Display the last 10 items in your command history and save it to `history_list.txt`. *(Hint: Use the `>` operator to redirect output. For example: `history 10 > history_list.txt`)*
 
 ---
 
@@ -197,14 +200,14 @@ You have been hired as a Junior Systems Administrator at **Apex Systems**. The s
     ```
 2.  **Audit the Server:**
     *   Locate `/var/tmp/apex_audit/`. List all files inside, sorted by size (largest first).
-    *   Write the system kernel release version and the file list output to `audit_report.txt`.
+    *   Write the system kernel release version and the file list output to `audit_report.txt`. *(Hint: Write the kernel version with `uname -r > audit_report.txt`, then append the directory listing with `ls -laS /var/tmp/apex_audit >> audit_report.txt`)*
 3.  **Organize Project Apollo:**
     *   Create the structured folder layout: `apollo/production/config/`, `apollo/production/bin/`, and `apollo/backups/`.
     *   Move all active system configuration files (`.conf`) from `apollo_temp/` to `apollo/production/config/`.
     *   Move all active script files (`.sh`) from `apollo_temp/` to `apollo/production/bin/`.
     *   Create a **Symbolic Link** to the production script `apollo/production/bin/run_app.sh` directly in the `apollo/` root directory named `quick_run.sh`.
     *   **Delete** all draft and temporary files (`.tmp` files and any files containing the word `draft` in their name) from `apollo_temp/` in a single command using wildcards.
-    *   List the recursive file structure of `apollo` using `ls -R apollo` and save it to `apollo_structure.txt`. Remove any remaining temporary setup folders.
+    *   List the recursive file structure of `apollo` using `ls -R apollo` and save it to `apollo_structure.txt`. Remove any remaining temporary setup folders. *(Hint: Use `ls -R apollo > apollo_structure.txt`)*
 
 ---
 

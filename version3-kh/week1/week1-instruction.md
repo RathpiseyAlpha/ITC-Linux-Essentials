@@ -32,6 +32,12 @@ graph TD
 *   **Pathing / ការប្រើប្រាស់ផ្លូវ (Paths):**
     **Absolute paths** start at root `/` (e.g. `/var/log`). **Relative paths** start from your current folder (e.g. `var/log` if you are in `/`).
     **ផ្លូវដាច់ខាត (Absolute paths)** ចាប់ផ្តើមពី root `/` (ឧទាហរណ៍៖ `/var/log`)។ **ផ្លូវធៀប (Relative paths)** ចាប់ផ្តើមពីថតបច្ចុប្បន្នដែលអ្នកកំពុងស្ថិតនៅ (ឧទាហរណ៍៖ `var/log` ប្រសិនបើអ្នកនៅក្នុង `/`)។
+*   **Output Redirection (`>` and `>>`) / ការបង្វែរទិសដៅលទ្ធផល៖** Used to send the output of a command directly into a text file instead of printing it to the terminal screen.
+    (នៅក្នុងប្រព័ន្ធ Linux អ្នកអាចបញ្ជូនលទ្ធផលចេញរបស់ពាក្យបញ្ជាទៅក្នុងឯកសារអត្ថបទដោយផ្ទាល់ ជំនួសឱ្យការបង្ហាញនៅលើអេក្រង់។)
+    *   `>` (Overwrite Redirect / បង្វែរជំនួស): Creates a new file or replaces the existing content of a file. E.g., `command > file.txt`
+        (បង្កើតឯកសារថ្មី ឬជំនួសខ្លឹមសារដែលមានស្រាប់នៅក្នុងឯកសារ។ ឧទាហរណ៍៖ `command > file.txt`)
+    *   `>>` (Append Redirect / បង្វែរសរសេរបន្ថែម): Appends the output to the end of a file without deleting its existing content. E.g., `command >> file.txt`
+        (សរសេរបន្ថែមលទ្ធផលទៅខាងចុងនៃឯកសារ ដោយមិនលុបខ្លឹមសារចាស់ឡើយ។ ឧទាហរណ៍៖ `command >> file.txt`)
 *   **Getting Help / ការស្វែងរកជំនួយ:**
     Linux includes local documentation. You do not need internet access to find options:
     ប្រព័ន្ធ Linux មានឯកសារជំនួយស្រាប់។ អ្នកមិនត្រូវការអ៊ីនធឺណិតដើម្បីស្វែងរកជម្រើសផ្សេងៗឡើយ៖
@@ -67,10 +73,10 @@ Run these commands and record the inputs/outputs in your report:
    (ត្រឡប់ទៅកាន់ home directory វិញដោយប្រើបញ្ជាតែមួយគត់)
 3. List your home directory showing hidden configuration files (e.g. `.bashrc`).
    (បង្ហាញបញ្ជី home directory ដោយរួមបញ្ចូលទាំងឯកសារកំណត់រចនាសម្ព័ន្ធលាក់ ដូចជា `.bashrc`)
-4. Run `whatis` on `mkdir`, `rm`, `cp`, and `mv`, and redirect the output to `whatis_summary.txt`.
-   (រត់ `whatis` លើ `mkdir`, `rm`, `cp`, និង `mv` រួចបង្វែរលទ្ធផលទៅកាន់ `whatis_summary.txt`)
-5. Display the last 10 items in your command history and save it to `history_list.txt`.
-   (បង្ហាញធាតុ ១០ ចុងក្រោយនៃប្រវត្តិបញ្ជារបស់អ្នក រួចរក្សាទុកក្នុង `history_list.txt`)
+4. Run `whatis` on `mkdir`, `rm`, `cp`, and `mv`, and redirect the output to `whatis_summary.txt`. *(Hint: Use the `>` operator to redirect output. For example: `whatis mkdir > whatis_summary.txt`)*
+   (រត់ `whatis` លើ `mkdir`, `rm`, `cp`, និង `mv` រួចបង្វែរលទ្ធផលទៅកាន់ `whatis_summary.txt`។ *(ជំនួយ៖ ប្រើប្រាស់សញ្ញា `>` ដើម្បីបង្វែរលទ្ធផលទៅកាន់ឯកសារ។ ឧទាហរណ៍៖ `whatis mkdir > whatis_summary.txt`)*)
+5. Display the last 10 items in your command history and save it to `history_list.txt`. *(Hint: Use the `>` operator to redirect output. For example: `history 10 > history_list.txt`)*
+   (បង្ហាញធាតុ ១០ ចុងក្រោយនៃប្រវត្តិបញ្ជារបស់អ្នក រួចរក្សាទុកក្នុង `history_list.txt`។ *(ជំនួយ៖ ប្រើប្រាស់សញ្ញា `>` ដើម្បីបង្វែរលទ្ធផលទៅកាន់ឯកសារ។ ឧទាហរណ៍៖ `history 10 > history_list.txt`)*)
 
 ---
 
@@ -200,8 +206,8 @@ You have been hired as a Junior Systems Administrator at **Apex Systems**. The s
 2. **Audit the Server / ធ្វើសវនកម្មម៉ាស៊ីនមេ៖**
    * Locate `/var/tmp/apex_audit/`. List all files inside, sorted by size (largest first).
      (ស្វែងរកថត `/var/tmp/apex_audit/`។ បង្ហាញបញ្ជីឯកសារខាងក្នុង តម្រៀបតាមទំហំពីធំជាងគេមកមុន)
-   * Write the system kernel release version and the file list output to `audit_report.txt`.
-     (សរសេរព័ត៌មាន kernel release version និងបញ្ជីឯកសារលទ្ធផលទៅក្នុង `audit_report.txt`)
+   * Write the system kernel release version and the file list output to `audit_report.txt`. *(Hint: Use `uname -r > audit_report.txt` then append the directory listing with `ls -laS /var/tmp/apex_audit >> audit_report.txt`)*
+     (សរសេរព័ត៌មាន kernel release version និងបញ្ជីឯកសារលទ្ធផលទៅក្នុង `audit_report.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `uname -r > audit_report.txt` រួចសរសេរបន្ថែមបញ្ជីឯកសារដោយប្រើ `ls -laS /var/tmp/apex_audit >> audit_report.txt`)*)
 3. **Organize Project Apollo / រៀបចំគម្រោង Apollo៖**
    * Create the structured folder layout: `apollo/production/config/`, `apollo/production/bin/`, and `apollo/backups/`.
      (បង្កើតប្លង់ថត៖ `apollo/production/config/`, `apollo/production/bin/`, និង `apollo/backups/`)
@@ -213,8 +219,8 @@ You have been hired as a Junior Systems Administrator at **Apex Systems**. The s
      (បង្កើត **Symbolic Link** ទៅកាន់ស្គ្រីបផលិតកម្ម `apollo/production/bin/run_app.sh` ផ្ទាល់នៅក្នុងថតមេ `apollo/` ដោយដាក់ឈ្មោះថា `quick_run.sh`)
    * **Delete** all draft and temporary files (`.tmp` files and any files containing the word `draft` in their name) from `apollo_temp/` in a single command using wildcards.
      (លុបឯកសារព្រាង និងឯកសារបណ្តោះអាសន្នទាំងអស់ (`.tmp` និងឯកសារដែលមានពាក្យ `draft`) ចេញពី `apollo_temp/` ក្នុងបញ្ជាតែមួយគត់ដោយប្រើ wildcards)
-   * List the recursive file structure of `apollo` using `ls -R apollo` and save it to `apollo_structure.txt`. Remove any remaining temporary setup folders.
-     (បង្ហាញរចនាសម្ព័ន្ធឯកសារ `apollo` recursively ដោយប្រើ `ls -R apollo` រួចរក្សាទុកក្នុង `apollo_structure.txt`។ លុបថតបណ្តោះអាសន្នដែលនៅសេសសល់ចេញ)
+   * List the recursive file structure of `apollo` using `ls -R apollo` and save it to `apollo_structure.txt`. Remove any remaining temporary setup folders. *(Hint: Use `ls -R apollo > apollo_structure.txt`)*
+     (បង្ហាញរចនាសម្ព័ន្ធឯកសារ `apollo` recursively ដោយប្រើ `ls -R apollo` រួចរក្សាទុកក្នុង `apollo_structure.txt`។ លុបថតបណ្តោះអាសន្នដែលនៅសេសសល់ចេញ។ *(ជំនួយ៖ ប្រើប្រាស់ `ls -R apollo > apollo_structure.txt`)*)
 
 ---
 

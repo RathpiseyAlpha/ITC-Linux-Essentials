@@ -56,12 +56,12 @@ graph LR
 | `grep` | `-i` | Case-insensitive search of matching lines | ស្វែងរកបន្ទាត់ដែលមានពាក្យត្រូវគ្នា (មិនប្រកាន់អក្សរធំ/តូច) | `grep -i "ssh" /etc/services` |
 
 ### 3. Session 4 Exercises (To Do) / លំហាត់អនុវត្តផ្នែកទី៤ (ត្រូវធ្វើ)
-1. Use `cat` with output redirection to write a file named `os_list.txt` directly from your console containing the names: `Ubuntu`, `Debian`, `CentOS`, `Fedora`, and `Arch`.
-   (ប្រើ `cat` ជាមួយការបង្វែរទិសដៅលទ្ធផល ដើម្បីសរសេរឯកសារឈ្មោះ `os_list.txt` ផ្ទាល់ពី console ដែលមានឈ្មោះ៖ `Ubuntu`, `Debian`, `CentOS`, `Fedora`, និង `Arch`)
-2. Append `RedHat` and `Alpine` to `os_list.txt` in separate commands and verify the file content.
-   (សរសេរបន្ថែម `RedHat` និង `Alpine` ទៅកាន់ `os_list.txt` ក្នុងបញ្ជាដាច់ដោយឡែកពីគ្នា រួចផ្ទៀងផ្ទាត់មាតិកាឯកសារ)
-3. Extract lines 15 to 20 of `/etc/services` using a pipeline of `head` and `tail`, and write the output to `services_range.txt`.
-   (ស្រង់យកបន្ទាត់ទី ១៥ ដល់ ២០ នៃឯកសារ `/etc/services` ដោយប្រើបំពង់បង្ហូរ `head` និង `tail` រួចសរសេរលទ្ធផលទៅ `services_range.txt`)
+1. Use `cat` with output redirection to write a file named `os_list.txt` directly from your console containing the names: `Ubuntu`, `Debian`, `CentOS`, `Fedora`, and `Arch`. *(Hint: Run `cat > os_list.txt`, type the operating systems line-by-line, then press `Ctrl+D` on a new line to save and close)*
+   (ប្រើ `cat` ជាមួយការបង្វែរទិសដៅលទ្ធផល ដើម្បីសរសេរឯកសារឈ្មោះ `os_list.txt` ផ្ទាល់ពី console ដែលមានឈ្មោះ៖ `Ubuntu`, `Debian`, `CentOS`, `Fedora`, និង `Arch`។ *(ជំនួយ៖ រត់ `cat > os_list.txt` រួចវាយឈ្មោះប្រព័ន្ធប្រតិបត្តិការម្តងមួយជួរ រួចចុច `Ctrl+D` នៅលើជួរថ្មីដើម្បីរក្សាទុក និងបិទ)*)
+2. Append `RedHat` and `Alpine` to `os_list.txt` in separate commands and verify the file content. *(Hint: Use the append operator `>>`. E.g., `echo "RedHat" >> os_list.txt` and `echo "Alpine" >> os_list.txt`)*
+   (សរសេរបន្ថែម `RedHat` និង `Alpine` ទៅកាន់ `os_list.txt` ក្នុងបញ្ជាដាច់ដោយឡែកពីគ្នា រួចផ្ទៀងផ្ទាត់មាតិកាឯកសារ។ *(ជំនួយ៖ ប្រើប្រាស់សញ្ញាប្រតិបត្តិការ `>>` ដូចជា `echo "RedHat" >> os_list.txt` និង `echo "Alpine" >> os_list.txt`)*)
+3. Extract lines 15 to 20 of `/etc/services` using a pipeline of `head` and `tail`, and write the output to `services_range.txt`. *(Hint: Use `head -n 20 /etc/services | tail -n 6 > services_range.txt`)*
+   (ស្រង់យកបន្ទាត់ទី ១៥ ដល់ ២០ នៃឯកសារ `/etc/services` ដោយប្រើបំពង់បង្ហូរ `head` និង `tail` រួចសរសេរលទ្ធផលទៅ `services_range.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `head -n 20 /etc/services | tail -n 6 > services_range.txt`)*)
 4. Count the number of lines in `/etc/passwd` containing the word `nologin` using `grep` and `wc -l` via a pipe, and record the command and result.
    (រាប់ចំនួនបន្ទាត់ក្នុង `/etc/passwd` ដែលមានផ្ទុកពាក្យ `nologin` ដោយប្រើ `grep` និង `wc -l` តាមរយៈបំពង់បង្ហូរ រួចកត់ត្រាបញ្ជានិងលទ្ធផល)
 
@@ -242,10 +242,10 @@ You are a Junior System Administrator at **Apex Systems**. The staging server ac
 2. **Audit Staging Web Logs / ធ្វើសវនកម្មឯកសារ Logs ម៉ាស៊ីនមេ៖**
    * Count the total log entries in `/var/tmp/apex_logs/web_access.log`.
      (រាប់ចំនួនកំណត់ត្រា log សរុបនៅក្នុង `/var/tmp/apex_logs/web_access.log`)
-   * Filter out all failed requests (HTTP status codes `401` or `404`) and write them to `failed_attempts.txt`.
-     (ចម្រាញ់យកសំណើដែលបរាជ័យទាំងអស់ (HTTP status codes `401` ឬ `404`) រួចសរសេរវាទៅកាន់ `failed_attempts.txt`)
-   * Search for lines containing search patterns for `/etc/passwd` and save matching lines to `attack_signatures.txt`.
-     (ស្វែងរកបន្ទាត់ដែលមានផ្ទុកលំនាំស្វែងរក `/etc/passwd` រួចរក្សាទុកបន្ទាត់ទាំងនោះក្នុង `attack_signatures.txt`)
+   * Filter out all failed requests (HTTP status codes `401` or `404`) and write them to `failed_attempts.txt`. *(Hint: Use `grep -E "401|404" /var/tmp/apex_logs/web_access.log > failed_attempts.txt`)*
+     (ចម្រាញ់យកសំណើដែលបរាជ័យទាំងអស់ (HTTP status codes `401` ឬ `404`) រួចសរសេរវាទៅកាន់ `failed_attempts.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `grep -E "401|404" /var/tmp/apex_logs/web_access.log > failed_attempts.txt`)*)
+   * Search for lines containing search patterns for `/etc/passwd` and save matching lines to `attack_signatures.txt`. *(Hint: Use `grep "/etc/passwd" /var/tmp/apex_logs/web_access.log > attack_signatures.txt`)*
+     (ស្វែងរកបន្ទាត់ដែលមានផ្ទុកលំនាំស្វែងរក `/etc/passwd` រួចរក្សាទុកបន្ទាត់ទាំងនោះក្នុង `attack_signatures.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `grep "/etc/passwd" /var/tmp/apex_logs/web_access.log > attack_signatures.txt`)*)
 3. **Write the Automated Audit Script / សរសេរស្គ្រីបសវនកម្មស្វ័យប្រវត្តិ៖**
    Create a shell script named `auto_audit.sh`. The script must perform the following actions sequentially:
    (បង្កើតស្គ្រីប shell មួយឈ្មោះ `auto_audit.sh`។ ស្គ្រីបត្រូវតែដំណើរការសកម្មភាពខាងក្រោមជាលំដាប់៖)

@@ -55,14 +55,14 @@ graph LR
 ### 3. Session 7 Exercises (To Do) / លំហាត់អនុវត្តផ្នែកទី៧ (ត្រូវធ្វើ)
 Run these commands and record the inputs/outputs in your report:
 ដំណើរការបញ្ជាទាំងនេះ និងកត់ត្រាធាតុចូល/លទ្ធផលទៅក្នុងរបាយការណ៍៖
-1. Run `lscpu` and find the CPU model name. Write it to `hw_audit.txt`.
-   (រត់ `lscpu` និងស្វែងរកឈ្មោះម៉ូដែល CPU រួចសរសេរទៅកាន់ `hw_audit.txt`)
-2. Append the total RAM size (from `free -h`) and disk space information (from `df -h`) to `hw_audit.txt`.
-   (សរសេរបន្ថែមទំហំ RAM សរុប (ពី `free -h`) និងព័ត៌មានទំហំផ្ទុកថាស (ពី `df -h`) ទៅក្នុង `hw_audit.txt`)
-3. Check your system's network IP addresses and append the output of `ip addr` to `hw_audit.txt`.
-   (ពិនិត្យមើលអាសយដ្ឋាន IP បណ្តាញរបស់ប្រព័ន្ធអ្នក រួចសរសេរបន្ថែមលទ្ធផល `ip addr` ទៅកាន់ `hw_audit.txt`)
-4. Ping the loopback address `127.0.0.1` 4 times and save the output to `ping_audit.txt`.
-   (Ping ទៅកាន់អាសយដ្ឋាន loopback `127.0.0.1` ចំនួន ៤ ដង រួចរក្សាទុកលទ្ធផលក្នុង `ping_audit.txt`)
+1. Run `lscpu` and find the CPU model name. Write it to `hw_audit.txt`. *(Hint: Use `lscpu | grep "Model name" > hw_audit.txt`)*
+   (រត់ `lscpu` និងស្វែងរកឈ្មោះម៉ូដែល CPU រួចសរសេរទៅកាន់ `hw_audit.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `lscpu | grep "Model name" > hw_audit.txt`)*)
+2. Append the total RAM size (from `free -h`) and disk space information (from `df -h`) to `hw_audit.txt`. *(Hint: Use `free -h >> hw_audit.txt` and `df -h >> hw_audit.txt`)*
+   (សរសេរបន្ថែមទំហំ RAM សរុប (ពី `free -h`) និងព័ត៌មានទំហំផ្ទុកថាស (ពី `df -h`) ទៅក្នុង `hw_audit.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `free -h >> hw_audit.txt` និង `df -h >> hw_audit.txt`)*)
+3. Check your system's network IP addresses and append the output of `ip addr` to `hw_audit.txt`. *(Hint: Use `ip addr >> hw_audit.txt`)*
+   (ពិនិត្យមើលអាសយដ្ឋាន IP បណ្តាញរបស់ប្រព័ន្ធអ្នក រួចសរសេរបន្ថែមលទ្ធផល `ip addr` ទៅកាន់ `hw_audit.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `ip addr >> hw_audit.txt`)*)
+4. Ping the loopback address `127.0.0.1` 4 times and save the output to `ping_audit.txt`. *(Hint: Use `ping -c 4 127.0.0.1 > ping_audit.txt`)*
+   (Ping ទៅកាន់អាសយដ្ឋាន loopback `127.0.0.1` ចំនួន ៤ ដង រួចរក្សាទុកលទ្ធផលក្នុង `ping_audit.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `ping -c 4 127.0.0.1 > ping_audit.txt`)*)
 
 ---
 
@@ -93,12 +93,12 @@ Run these commands and record the inputs/outputs in your report:
 | `whoami` | None | Show current active username | បង្ហាញឈ្មោះគណនីបច្ចុប្បន្នដែលកំពុងប្រើប្រាស់ | `whoami` |
 
 ### 3. Session 8 Exercises (To Do) / លំហាត់អនុវត្តផ្នែកទី៨ (ត្រូវធ្វើ)
-1. Inspect the first 5 entries of `/etc/passwd` and save the list to `passwd_head.txt`.
-   (ពិនិត្យមើលធាតុ ៥ ដំបូងនៃឯកសារ `/etc/passwd` រួចរក្សាទុកក្នុង `passwd_head.txt`)
+1. Inspect the first 5 entries of `/etc/passwd` and save the list to `passwd_head.txt`. *(Hint: Use `head -n 5 /etc/passwd > passwd_head.txt`)*
+   (ពិនិត្យមើលធាតុ ៥ ដំបូងនៃឯកសារ `/etc/passwd` រួចរក្សាទុកក្នុង `passwd_head.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `head -n 5 /etc/passwd > passwd_head.txt`)*)
 2. Create a group named `study_group` and a user named `learner` with `study_group` as their primary group.
    (បង្កើតក្រុមមួយឈ្មោះ `study_group` និងគណនីអ្នកប្រើឈ្មោះ `learner` ដោយឱ្យមាន `study_group` ជាក្រុមចម្បង)
-3. Verify GID and group settings of `learner` using `id` and redirect the output to `learner_id.txt`.
-   (ផ្ទៀងផ្ទាត់ការកំណត់ GID និងក្រុមរបស់ `learner` ដោយប្រើ `id` រួចបង្វែរលទ្ធផលទៅកាន់ `learner_id.txt`)
+3. Verify GID and group settings of `learner` using `id` and redirect the output to `learner_id.txt`. *(Hint: Use `id learner > learner_id.txt`)*
+   (ផ្ទៀងផ្ទាត់ការកំណត់ GID និងក្រុមរបស់ `learner` ដោយប្រើ `id` រួចបង្វែរលទ្ធផលទៅកាន់ `learner_id.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `id learner > learner_id.txt`)*)
 4. Delete the user `learner` and group `study_group` from the system using cleanup commands.
    (លុបអ្នកប្រើប្រាស់ `learner` និងក្រុម `study_group` ចេញពីប្រព័ន្ធវិញដោយប្រើបញ្ជាសម្អាត)
 
@@ -151,10 +151,10 @@ graph TD
    (ស្វែងរកដំណើរការកម្មវិធីដែលកំពុងរត់ឈ្មោះ `bash` ដោយប្រើ `ps aux | grep bash` រួចកំណត់សម្គាល់លេខ PID របស់វា)
 2. Create a folder named `secure_workspace/` and change its permission to `700` using octal mode.
    (បង្កើតថតមួយឈ្មោះ `secure_workspace/` រួចផ្លាស់ប្តូរសិទ្ធិប្រើប្រាស់របស់វាទៅ `700` ដោយប្រើទម្រង់ octal)
-3. List the directory properties using `ls -ld secure_workspace` and redirect the output to `permissions_check.txt`.
-   (បង្ហាញលក្ខណៈសម្បត្តិថតដោយប្រើ `ls -ld secure_workspace` រួចបង្វែរលទ្ធផលទៅកាន់ `permissions_check.txt`)
-4. Check the running status of the cron daemon using `systemctl status cron` and redirect it to `cron_status.txt`.
-   (ពិនិត្យស្ថានភាពដំណើរការរបស់ cron daemon ដោយប្រើ `systemctl status cron` រួចបង្វែរលទ្ធផលទៅ `cron_status.txt`)
+3. List the directory properties using `ls -ld secure_workspace` and redirect the output to `permissions_check.txt`. *(Hint: Use `ls -ld secure_workspace > permissions_check.txt`)*
+   (បង្ហាញលក្ខណៈសម្បត្តិថតដោយប្រើ `ls -ld secure_workspace` រួចបង្វែរលទ្ធផលទៅកាន់ `permissions_check.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `ls -ld secure_workspace > permissions_check.txt`)*)
+4. Check the running status of the cron daemon using `systemctl status cron` and redirect it to `cron_status.txt`. *(Hint: Use `systemctl status cron > cron_status.txt`)*
+   (ពិនិត្យស្ថានភាពដំណើរការរបស់ cron daemon ដោយប្រើ `systemctl status cron` រួចបង្វែរលទ្ធផលទៅ `cron_status.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `systemctl status cron > cron_status.txt`)*)
 
 ---
 
@@ -188,13 +188,13 @@ You are a Junior Systems Administrator at **Apex Systems**. The staging web serv
 2. **Audit Hardware Specifications / ធ្វើសវនកម្មធនធានប្រព័ន្ធ៖**
    * Audit the machine's hardware to report specifications. Inspect CPU cores and total memory.
      (ធ្វើសវនកម្មលើផ្នែករឹងរបស់ម៉ាស៊ីនដើម្បីរាយការណ៍អំពីលក្ខណៈបច្ចេកទេស។ ពិនិត្យមើលស្នូល CPU និងអង្គចងចាំសរុប)
-   * Write the hardware specs summary to `sys_spec.txt`.
-     (សរសេរសេចក្តីសង្ខេបលក្ខណៈបច្ចេកទេសផ្នែករឹងទៅកាន់ `sys_spec.txt`)
+   * Write the hardware specs summary to `sys_spec.txt`. *(Hint: Use `lscpu > sys_spec.txt`)*
+     (សរសេរសេចក្តីសង្ខេបលក្ខណៈបច្ចេកទេសផ្នែករឹងទៅកាន់ `sys_spec.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `lscpu > sys_spec.txt`)*)
 3. **Check Open Port Bindings / ពិនិត្យច្រកទ្វារកំពុងបើក៖**
    * Locate active open listening network sockets and ports on the machine.
      (ស្វែងរកច្រកទ្វារបណ្តាញ (ports) និង sockets ដែលកំពុងបើករង់ចាំការតភ្ជាប់លើម៉ាស៊ីន)
-   * Write the open port socket listing to `ports_active.txt`.
-     (សរសេរបញ្ជីច្រកទ្វារដែលកំពុងបើកទៅកាន់ `ports_active.txt`)
+   * Write the open port socket listing to `ports_active.txt`. *(Hint: Use `ss -lntu > ports_active.txt`)*
+     (សរសេរបញ្ជីច្រកទ្វារដែលកំពុងបើកទៅកាន់ `ports_active.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `ss -lntu > ports_active.txt`)*)
 4. **Configure Project Mercury Workspace / កំណត់រចនាសម្ព័ន្ធកន្លែងការងារគម្រោង Mercury៖**
    * The folder `/var/tmp/mercury_dev` must be configured for the group `mercury_team`.
      (ថត `/var/tmp/mercury_dev` ត្រូវតែកំណត់សម្រាប់ក្រុម `mercury_team`)
@@ -208,17 +208,17 @@ You are a Junior Systems Administrator at **Apex Systems**. The staging web serv
        (ក្រុមទទួលបានសិទ្ធិ អាន សរសេរ និងដំណើរការ (`rwx` = 7))
      * Others have no permissions (`---` = 0).
        (អ្នកដទៃគ្មានសិទ្ធិអ្វីទាំងអស់ (`---` = 0))
-   * Verify the folder permissions and group ownership using `ls -ld` and redirect output to `mercury_permissions.txt`.
-     (ផ្ទៀងផ្ទាត់សិទ្ធិថត និងម្ចាស់ក្រុមគ្រប់គ្រងដោយប្រើ `ls -ld` រួចបង្វែរលទ្ធផលទៅ `mercury_permissions.txt`)
+   * Verify the folder permissions and group ownership using `ls -ld` and redirect output to `mercury_permissions.txt`. *(Hint: Use `ls -ld mercury_dev > mercury_permissions.txt`)*
+     (ផ្ទៀងផ្ទាត់សិទ្ធិថត និងម្ចាស់ក្រុមគ្រប់គ្រងដោយប្រើ `ls -ld` រួចបង្វែរលទ្ធផលទៅ `mercury_permissions.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `ls -ld mercury_dev > mercury_permissions.txt`)*)
 5. **Diagnose and Recover Rogue Server / វិភាគរកនិងស្តារម៉ាស៊ីនមេឡើងវិញ៖**
    * Use `ps aux` to locate the rogue background script named `./rogue_loop.sh` and identify its PID.
      (ប្រើ `ps aux` ដើម្បីស្វែងរកស្គ្រីបដែលរត់ខូចឈ្មោះ `./rogue_loop.sh` រួចកត់ចំណាំលេខ PID របស់វា)
    * Kill the runaway process using `kill` (use force kill `-9` if necessary).
      (បញ្ឈប់ដំណើរការកម្មវិធីខូចនោះដោយប្រើ `kill` (ប្រើការបង្ខំបិទ `-9` ប្រសិនបើចាំបាច់))
-   * Verify the process is gone. Check system memory availability and write the output status to `system_recovery.txt`.
-     (ផ្ទៀងផ្ទាត់ថាដំណើរការកម្មវិធីនោះត្រូវបានបិទពិតប្រាកដ។ ពិនិត្យមើលអង្គចងចាំប្រព័ន្ធដែលទំនេរ រួចសរសេរលទ្ធផលក្នុង `system_recovery.txt`)
-   * Verify loopback ping connectivity. Ping `127.0.0.1` 4 times and append the results to `system_recovery.txt`.
-     (ផ្ទៀងផ្ទាត់ការតភ្ជាប់ ping loopback។ Ping ទៅ `127.0.0.1` ចំនួន ៤ ដង រួចសរសេរបន្ថែមលទ្ធផលទៅក្នុង `system_recovery.txt`)
+   * Verify the process is gone. Check system memory availability and write the output status to `system_recovery.txt`. *(Hint: Use `free -h > system_recovery.txt`)*
+     (ផ្ទៀងផ្ទាត់ថាដំណើរការកម្មវិធីនោះត្រូវបានបិទពិតប្រាកដ។ ពិនិត្យមើលអង្គចងចាំប្រព័ន្ធដែលទំនេរ រួចសរសេរលទ្ធផលក្នុង `system_recovery.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `free -h > system_recovery.txt`)*)
+   * Verify loopback ping connectivity. Ping `127.0.0.1` 4 times and append the results to `system_recovery.txt`. *(Hint: Use `ping -c 4 127.0.0.1 >> system_recovery.txt`)*
+     (ផ្ទៀងផ្ទាត់ការតភ្ជាប់ ping loopback។ Ping ទៅ `127.0.0.1` ចំនួន ៤ ដង រួចសរសេរបន្ថែមលទ្ធផលទៅក្នុង `system_recovery.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `ping -c 4 127.0.0.1 >> system_recovery.txt`)*)
    * Clean up by deleting `rogue_loop.sh` from your directory.
      (សម្អាតដោយលុបឯកសារ `rogue_loop.sh` ចេញពីថតរបស់អ្នក)
 

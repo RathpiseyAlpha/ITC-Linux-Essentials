@@ -51,11 +51,11 @@
 | `zip` / `unzip` | `-r` | Zip / Unzip directories recursively | ចងក្រង និងបង្រួម/ពន្លា ថតទិន្នន័យជាឯកសារ `.zip` | `zip -r web.zip html/` |
 
 ### 3. Session 4 Exercises (To Do) / លំហាត់អនុវត្តផ្នែកទី៤ (ត្រូវធ្វើ)
-1. Use `cat` with output redirection to write a file named `os_list.txt` directly from your console containing the names: `Ubuntu`, `Debian`, `CentOS`, `Fedora`, and `Arch`.
+1. Use `cat` with output redirection to write a file named `os_list.txt` directly from your console containing the names: `Ubuntu`, `Debian`, `CentOS`, `Fedora`, and `Arch`. *(Hint: Run `cat > os_list.txt`, type the operating systems line-by-line, then press `Ctrl+D` on a new line to save and close)*
    (ប្រើ `cat` ជាមួយការបង្វែរលទ្ធផលដើម្បីបង្កើតឯកសារ `os_list.txt` ផ្ទាល់ពី console ដែលមានឈ្មោះ៖ `Ubuntu`, `Debian`, `CentOS`, `Fedora`, និង `Arch`)
-2. Append `RedHat` and `Alpine` to `os_list.txt` in separate commands and verify the file content.
+2. Append `RedHat` and `Alpine` to `os_list.txt` in separate commands and verify the file content. *(Hint: Use the append operator `>>`. E.g., `echo "RedHat" >> os_list.txt` and `echo "Alpine" >> os_list.txt`)*
    (សរសេរបន្ថែម `RedHat` និង `Alpine` ទៅក្នុង `os_list.txt` ដោយបញ្ជាផ្សេងគ្នា រួចផ្ទៀងផ្ទាត់មាតិកាឯកសារ)
-3. Extract lines 20 to 25 of `/etc/services` using a pipeline of `head` and `tail`, and write the output to `services_range.txt`.
+3. Extract lines 20 to 25 of `/etc/services` using a pipeline of `head` and `tail`, and write the output to `services_range.txt`. *(Hint: Use `head -n 20 /etc/services | tail -n 6 > services_range.txt`)*
    (ទាញយកបន្ទាត់ទី ២០ ដល់ ២៥ នៃ `/etc/services` ដោយប្រើ pipeline របស់ `head` និង `tail` រួចសរសេរទៅកាន់ `services_range.txt`)
 4. Create a folder named `backup_test/` and copy `os_list.txt` inside it. Create a compressed archive named `backup.tar.gz` of this folder.
    (បង្កើតថតឈ្មោះ `backup_test/` រួចចម្លង `os_list.txt` ទៅក្នុងនោះ។ បង្កើតឯកសារចងក្រងបង្រួម `backup.tar.gz` នៃថតនេះ)
@@ -322,13 +322,13 @@ sudo snap install tmux
 ### 4. Session 6 Exercises (To Do) / លំហាត់អនុវត្តផ្នែកទី៦ (ត្រូវធ្វើ)
 1. Search and install the locomotive package `sl` using your package manager.
    (ស្វែងរក និងដំឡើងកញ្ចប់កម្មវិធី locomotive `sl` ដោយប្រើកម្មវិធីគ្រប់គ្រងកញ្ចប់)
-2. List all files installed by `sl` and redirect the file list to `locomotive_files.txt`.
+2. List all files installed by `sl` and redirect the file list to `locomotive_files.txt`. *(Hint: Use `dpkg -L sl > locomotive_files.txt`)*
    (បង្ហាញបញ្ជីឯកសារដែលដំឡើងដោយ `sl` រួចបង្វែរវាទៅកាន់ `locomotive_files.txt`)
 3. Create a directory named `sandbox_deploy/` containing a `hello.c` file and a `Makefile`.
    (បង្កើតថតឈ្មោះ `sandbox_deploy/` ដែលមានឯកសារ `hello.c` និង `Makefile`)
 4. Run `make` to compile the application and execute the binary. Record your output.
    (រត់ `make` ដើម្បីចងក្រងកម្មវិធី និងដំណើរការ binary។ កត់ត្រាលទ្ធផលរបស់អ្នក)
-5. Create a plain tarball (`backup.tar`) and a compressed tarball (`backup.tar.gz`) of the `sandbox_deploy` folder. Compare the file sizes using `ls -lh` and redirect the size comparison output to `size_comparison.txt`.
+5. Create a plain tarball (`backup.tar`) and a compressed tarball (`backup.tar.gz`) of the `sandbox_deploy` folder. Compare the file sizes using `ls -lh` and redirect the size comparison output to `size_comparison.txt`. *(Hint: Use `ls -lh backup.tar backup.tar.gz > size_comparison.txt`)*
    (បង្កើតឯកសារ tar ធម្មតា `backup.tar` និងបង្រួម `backup.tar.gz` នៃថត `sandbox_deploy`។ ប្រៀបធៀបទំហំឯកសារដោយប្រើ `ls -lh` រួចបង្វែរលទ្ធផលទៅកាន់ `size_comparison.txt`)
 
 ---
@@ -388,10 +388,10 @@ You are a DevOps Engineer at **Apex Systems**. The production server has been sl
 2. **Audit Staging Web Logs / វិភាគកំណត់ត្រា Log គេហទំព័រ៖**
    * Count the total logs in `/var/tmp/apex_logs/web_access.log`.
      (រាប់ចំនួនកំណត់ត្រា log សរុបដែលមាននៅក្នុងឯកសារ log access)
-   * Filter out failed requests (HTTP status codes `401` or `404`) and write them to `failed_attempts.txt`.
-     (ចម្រោះយកសំណើបរាជ័យ (status code 401 ឬ 404) រួចសរសេរទៅក្នុង `failed_attempts.txt`)
-   * Search for files containing signature matches for `/etc/passwd` and save matching lines to `attack_signatures.txt`.
-     (ស្វែងរកការព្យាយាមចូលទៅកាន់ឯកសារ `/etc/passwd` រួចសរសេរបន្ទាត់ទាំងនោះទៅក្នុង `attack_signatures.txt`)
+   * Filter out failed requests (HTTP status codes `401` or `404`) and write them to `failed_attempts.txt`. *(Hint: Use `grep -E "401|404" /var/tmp/apex_logs/web_access.log > failed_attempts.txt`)*
+     (ចម្រោះយកសំណើបរាជ័យ (status code 401 ឬ 404) រួចសរសេរទៅក្នុង `failed_attempts.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `grep -E "401|404" /var/tmp/apex_logs/web_access.log > failed_attempts.txt`)*)
+   * Search for files containing signature matches for `/etc/passwd` and save matching lines to `attack_signatures.txt`. *(Hint: Use `grep "/etc/passwd" /var/tmp/apex_logs/web_access.log > attack_signatures.txt`)*
+     (ស្វែងរកការព្យាយាមចូលទៅកាន់ឯកសារ `/etc/passwd` រួចសរសេរបន្ទាត់ទាំងនោះទៅក្នុង `attack_signatures.txt`។ *(ជំនួយ៖ ប្រើប្រាស់ `grep "/etc/passwd" /var/tmp/apex_logs/web_access.log > attack_signatures.txt`)*)
 3. **Write the Automated Deployment Script / សរសេរស្គ្រីបដាក់ពង្រាយស្វ័យប្រវត្តិ៖**
    Create a bash script named `auto_deploy.sh`. The script must perform the following actions sequentially:
    (បង្កើតស្គ្រីប bash ឈ្មោះ `auto_deploy.sh`។ ស្គ្រីបត្រូវតែដំណើរការសកម្មភាពខាងក្រោមតាមលំដាប់លំដោយ៖)

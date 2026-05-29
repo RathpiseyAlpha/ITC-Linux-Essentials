@@ -37,10 +37,10 @@
 | | `-c` | Display count of bytes/characters in a stream | `wc -c file.txt` |
 
 ### 3. Session 4 Exercises (To Do)
-1. Use `cat` with output redirection to write a file named `os_list.txt` directly from your console containing the names: `Ubuntu`, `Debian`, `CentOS`, `Fedora`, and `Arch`.
-2. Append `RedHat` and `Alpine` to `os_list.txt` in separate commands and verify the file content.
+1. Use `cat` with output redirection to write a file named `os_list.txt` directly from your console containing the names: `Ubuntu`, `Debian`, `CentOS`, `Fedora`, and `Arch`. *(Hint: Run `cat > os_list.txt`, type the operating systems line-by-line, then press `Ctrl+D` on a new line to save and close)*
+2. Append `RedHat` and `Alpine` to `os_list.txt` in separate commands and verify the file content. *(Hint: Use the append operator `>>`. E.g., `echo "RedHat" >> os_list.txt` and `echo "Alpine" >> os_list.txt`)*
 3. Attempt to run `ls /dummy_folder_test` (which does not exist) and redirect the stderr message into `stderr_log.txt`.
-4. Extract lines 20 to 25 of `/etc/services` using a pipeline of `head` and `tail`, and write the output to `services_range.txt`.
+4. Extract lines 20 to 25 of `/etc/services` using a pipeline of `head` and `tail`, and write the output to `services_range.txt`. *(Hint: Use `head -n 20 /etc/services | tail -n 6 > services_range.txt`)*
 5. Use `wc` to count lines in `/etc/services` and append the number to `services_range.txt`.
 
 ---
@@ -205,10 +205,10 @@ sudo snap install tmux
 
 ### 4. Session 6 Exercises (To Do)
 1. Search and install the locomotive package `sl` using your package manager.
-2. List all files installed by `sl` and redirect the file list to `locomotive_files.txt`.
+2. List all files installed by `sl` and redirect the file list to `locomotive_files.txt`. *(Hint: Use `dpkg -L sl > locomotive_files.txt`)*
 3. Create a directory named `sandbox_deploy/` containing a `hello.c` file and a `Makefile`. 
 4. Run `make` to compile the application and execute the binary. Record your output.
-5. Create a plain tarball (`backup.tar`) and a compressed tarball (`backup.tar.gz`) of the `sandbox_deploy` folder. Compare the file sizes using `ls -lh` and redirect the size comparison output to `size_comparison.txt`.
+5. Create a plain tarball (`backup.tar`) and a compressed tarball (`backup.tar.gz`) of the `sandbox_deploy` folder. Compare the file sizes using `ls -lh` and redirect the size comparison output to `size_comparison.txt`. *(Hint: Use `ls -lh backup.tar backup.tar.gz > size_comparison.txt`)*
 
 ---
 
@@ -270,8 +270,8 @@ You are a DevOps Engineer at **Apex Systems**. The staging server has been slow,
     ```
 2.  **Audit Staging Web Logs:**
     *   Count the total logs in `/var/tmp/apex_logs/web_access.log`.
-    *   Filter out failed requests (HTTP status codes `401` or `404`) and write them to `failed_attempts.txt`.
-    *   Search for files containing signature matches for `/etc/passwd` and save matching lines to `attack_signatures.txt`.
+    *   Filter out failed requests (HTTP status codes `401` or `404`) and write them to `failed_attempts.txt`. *(Hint: Use `grep -E "401|404" /var/tmp/apex_logs/web_access.log > failed_attempts.txt`)*
+    *   Search for files containing signature matches for `/etc/passwd` and save matching lines to `attack_signatures.txt`. *(Hint: Use `grep "/etc/passwd" /var/tmp/apex_logs/web_access.log > attack_signatures.txt`)*
     *   Extract the URL requested (the 7th space-separated field in the log). Count the occurrences of each URL, sort them from highest hit frequency to lowest, and write the list to `frequent_targets.txt`.
 3.  **Deploy and Archive Application:**
     *   Archive and compress `apollo_app/` into `apollo_backup.tar.gz`.

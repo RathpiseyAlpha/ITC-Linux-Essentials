@@ -81,11 +81,11 @@ sudo ss -tulpn
 ---
 
 ### 4. Session 7 Exercises (To Do)
-1. Run `lscpu` and extract the CPU Model Name. Write it to `hw_audit.txt`.
-2. Append the total RAM size (from `free -h`) and block storage devices (from `lsblk`) to `hw_audit.txt`.
-3. Check your system routing table using `ip route` and append the default gateway IP to `hw_audit.txt`.
-4. Perform DNS lookup on `itc.edu.kh` (or any university domain) using `nslookup` and redirect output to `dns_audit.txt`.
-5. Ping the loopback address `127.0.0.1` 4 times and append output to `dns_audit.txt`.
+1. Run `lscpu` and extract the CPU Model Name. Write it to `hw_audit.txt`. *(Hint: Use `lscpu | grep "Model name" > hw_audit.txt`)*
+2. Append the total RAM size (from `free -h`) and block storage devices (from `lsblk`) to `hw_audit.txt`. *(Hint: Use `free -h >> hw_audit.txt` and `lsblk >> hw_audit.txt`)*
+3. Check your system routing table using `ip route` and append the default gateway IP to `hw_audit.txt`. *(Hint: Use `ip route | grep default >> hw_audit.txt`)*
+4. Perform DNS lookup on `itc.edu.kh` (or any university domain) using `nslookup` and redirect output to `dns_audit.txt`. *(Hint: Use `nslookup itc.edu.kh > dns_audit.txt`)*
+5. Ping the loopback address `127.0.0.1` 4 times and append output to `dns_audit.txt`. *(Hint: Use `ping -c 4 127.0.0.1 >> dns_audit.txt`)*
 
 ---
 
@@ -122,9 +122,9 @@ sudo ss -tulpn
 ---
 
 ### 3. Session 8 Exercises (To Do)
-1. Inspect the first 5 entries of `/etc/passwd` and save the list to `passwd_head.txt`.
+1. Inspect the first 5 entries of `/etc/passwd` and save the list to `passwd_head.txt`. *(Hint: Use `head -n 5 /etc/passwd > passwd_head.txt`)*
 2. Create a group named `study_group` and a user named `learner` with `study_group` as their primary group.
-3. Verify GID and group settings of `learner` using `id` and redirect the output to `learner_id.txt`.
+3. Verify GID and group settings of `learner` using `id` and redirect the output to `learner_id.txt`. *(Hint: Use `id learner > learner_id.txt`)*
 4. Delete the user `learner` and group `study_group` from the system using cleanup commands.
 
 ---
@@ -266,10 +266,10 @@ kill %1
 
 ### 4. Session 9 Exercises (To Do)
 1. Start two background tasks: `sleep 450 &` and `sleep 550 &`.
-2. Run `jobs` and redirect the output list to `jobs_list.txt`.
+2. Run `jobs` and redirect the output list to `jobs_list.txt`. *(Hint: Use `jobs > jobs_list.txt`)*
 3. Terminate both sleep processes using their PIDs.
-4. Create a directory named `shared_workspace/` and assign SUID and SGID to it. Run `ls -ld shared_workspace` and redirect output to `permissions_check.txt`.
-5. Check Systemd service status of the cron daemon (`systemctl status cron`) and redirect it to `cron_status.txt`.
+4. Create a directory named `shared_workspace/` and assign SUID and SGID to it. Run `ls -ld shared_workspace` and redirect output to `permissions_check.txt`. *(Hint: Use `ls -ld shared_workspace > permissions_check.txt`)*
+5. Check Systemd service status of the cron daemon (`systemctl status cron`) and redirect it to `cron_status.txt`. *(Hint: Use `systemctl status cron > cron_status.txt`)*
 
 ---
 
@@ -300,10 +300,10 @@ You are a Systems Administrator at **Apex Systems**. The management office requi
     ```
 2.  **Audit Hardware Specifications:**
     *   Audit the machine's hardware to report specifications. Inspect CPU cores, total memory, and block storage devices.
-    *   Write the hardware specs summary to `sys_spec.txt`.
+    *   Write the hardware specs summary to `sys_spec.txt`. *(Hint: Use `lscpu > sys_spec.txt`)*
 3.  **Check Open Port Bindings:**
     *   Locate active open listening network sockets and ports on the machine.
-    *   Write the open port socket listing to `ports_active.txt`.
+    *   Write the open port socket listing to `ports_active.txt`. *(Hint: Use `ss -lntu > ports_active.txt`)*
 4.  **Configure Project Mercury Collaborative Workspace:**
     *   The folder `/var/tmp/mercury_dev` must be configured for the group `mercury_team`.
     *   Set the folder owner to `engineer_alice` and group to `mercury_team`.
@@ -312,12 +312,12 @@ You are a Systems Administrator at **Apex Systems**. The management office requi
         *   The group has read, write, and execute (`rwx` = 7).
         *   Others have no permissions (`---` = 0).
         *   Add **SGID** (Set Group ID) to the folder (using octal `2` prefix, e.g. `2770`), ensuring that any files created inside by Bob or Alice inherit the `mercury_team` group ownership automatically.
-    *   Verify the folder permissions and group ownership using `ls -ld` and redirect output to `mercury_permissions.txt`.
+    *   Verify the folder permissions and group ownership using `ls -ld` and redirect output to `mercury_permissions.txt`. *(Hint: Use `ls -ld mercury_dev > mercury_permissions.txt`)*
 5.  **Diagnose and Recover Rogue Server:**
     *   Use `ps aux` to locate the rogue background script named `./rogue_loop.sh` and identify its PID.
     *   Kill the runaway process using `kill` (use force kill `-9` if necessary).
-    *   Verify the process is gone. Check system memory availability and write the output status to `system_recovery.txt`.
-    *   Verify loopback ping connectivity. Ping `127.0.0.1` 4 times and append the results to `system_recovery.txt`.
+    *   Verify the process is gone. Check system memory availability and write the output status to `system_recovery.txt`. *(Hint: Use `free -h > system_recovery.txt`)*
+    *   Verify loopback ping connectivity. Ping `127.0.0.1` 4 times and append the results to `system_recovery.txt`. *(Hint: Use `ping -c 4 127.0.0.1 >> system_recovery.txt`)*
     *   Clean up by deleting `rogue_loop.sh` from your directory.
 
 ---
